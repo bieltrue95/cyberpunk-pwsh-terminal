@@ -20,3 +20,4 @@ All notable changes to this project will be documented in this file.
 - Architecture, screenshots, and troubleshooting documentation.
 - Portuguese-Brazilian documentation as the primary docs, with English as secondary docs.
 - Backup locations and restore instructions in install/troubleshooting docs.
+- Dedicated bilingual backup and restore guide.

@@ -99,6 +99,9 @@ Get-ChildItem -LiteralPath (Split-Path -Parent $PROFILE) -Filter "*.bak-*"
 Get-ChildItem -LiteralPath (Split-Path -Parent $PROFILE) -Filter "*.backup-before-uninstall-*"
 ```
 
+Complete guide with backup paths and restore commands:
+[Backup and restore](BACKUP_RESTORE.md).
+
 ## See What Was Installed
 
 Use:

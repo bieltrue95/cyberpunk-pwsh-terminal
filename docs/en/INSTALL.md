@@ -129,6 +129,9 @@ Copy-Item -LiteralPath $backupPath -Destination $settingsPath -Force
 If you use Windows Terminal Preview, replace `Microsoft.WindowsTerminal` with
 `Microsoft.WindowsTerminalPreview` in the path.
 
+Complete guide with formats, paths, listing, and restore commands:
+[Backup and restore](BACKUP_RESTORE.md).
+
 ## Optional Flags
 
 Install oh-my-posh through winget when missing:

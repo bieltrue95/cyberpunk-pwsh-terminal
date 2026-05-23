@@ -152,8 +152,8 @@ C:\Users\<you>\Documents\PowerShell\themes\cyberpunk-clean.omp.json
 C:\Users\<you>\Documents\PowerShell\data\cyber-item-rules.psd1
 ```
 
-For restore details, see [docs/en/INSTALL.md](docs/en/INSTALL.md) and
-[docs/en/TROUBLESHOOTING.md](docs/en/TROUBLESHOOTING.md).
+For the complete backup, listing, and restore guide, see
+[docs/en/BACKUP_RESTORE.md](docs/en/BACKUP_RESTORE.md).
 
 ## Daily Commands
 
@@ -297,6 +297,7 @@ More fixes live in [docs/TROUBLESHOOTING.md](docs/en/TROUBLESHOOTING.md).
 ## Documentation
 
 - [Install notes](docs/en/INSTALL.md)
+- [Backup and restore](docs/en/BACKUP_RESTORE.md)
 - [Architecture](docs/en/ARCHITECTURE.md)
 - [Screenshots](docs/en/SCREENSHOTS.md)
 - [Troubleshooting](docs/en/TROUBLESHOOTING.md)
