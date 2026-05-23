@@ -87,7 +87,7 @@ if ($terminalSettings) {
     Write-WarnCheck 'Windows Terminal settings.json not found.'
 }
 
-foreach ($file in @('install.ps1','uninstall.ps1','scripts\test-profile.ps1','scripts\merge-windows-terminal.ps1','profile\Microsoft.PowerShell_profile.ps1')) {
+foreach ($file in @('setup.ps1','install.ps1','uninstall.ps1','scripts\test-profile.ps1','scripts\merge-windows-terminal.ps1','profile\Microsoft.PowerShell_profile.ps1')) {
     Test-PowerShellParse -Path (Join-Path $repoRoot $file)
 }
 

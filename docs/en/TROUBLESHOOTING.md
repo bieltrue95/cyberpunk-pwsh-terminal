@@ -2,6 +2,23 @@
 
 Language: [Português do Brasil](../TROUBLESHOOTING.md) | English
 
+## First Aid
+
+If the terminal opens broken or the profile does not load, enter without a
+profile:
+
+```powershell
+pwsh -NoLogo -NoProfile
+```
+
+Then run diagnostics from the repository folder:
+
+```powershell
+.\scripts\check.ps1
+```
+
+If you need to roll back, use the [Backup and restore](BACKUP_RESTORE.md) guide.
+
 ## Icons Show As Boxes
 
 Install a Nerd Font and select it in Windows Terminal:

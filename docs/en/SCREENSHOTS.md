@@ -13,6 +13,8 @@ before real PNG screenshots are captured.
 | `screenshots/history-search.svg` | PSReadLine history/search preview. |
 | `screenshots/data-driven-rules.svg` | Architecture preview for data-driven rules. |
 | `screenshots/safe-install-flow.svg` | Installer and validation flow preview. |
+| `screenshots/beginner-quick-start.svg` | Beginner five-command flow preview. |
+| `screenshots/emergency-restore.svg` | Emergency restore flow preview. |
 
 ## Adding Real Screenshots
 
@@ -22,6 +24,7 @@ Recommended PNG names:
 screenshots/terminal-real.png
 screenshots/history-real.png
 screenshots/install-real.png
+screenshots/emergency-real.png
 ```
 
 Suggested capture checklist:

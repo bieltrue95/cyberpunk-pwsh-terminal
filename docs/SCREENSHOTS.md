@@ -13,6 +13,8 @@ mesmo antes de existirem capturas PNG reais.
 | `screenshots/history-search.svg` | Prévia do histórico e busca do PSReadLine. |
 | `screenshots/data-driven-rules.svg` | Prévia da arquitetura data-driven. |
 | `screenshots/safe-install-flow.svg` | Prévia do fluxo de instalação e validação. |
+| `screenshots/beginner-quick-start.svg` | Prévia do caminho iniciante em cinco comandos. |
+| `screenshots/emergency-restore.svg` | Prévia do plano de emergência e restauração. |
 
 ## Adicionar Screenshots Reais
 
@@ -22,6 +24,7 @@ Nomes PNG recomendados:
 screenshots/terminal-real.png
 screenshots/history-real.png
 screenshots/install-real.png
+screenshots/emergency-real.png
 ```
 
 Checklist sugerido:

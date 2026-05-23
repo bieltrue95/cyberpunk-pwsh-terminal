@@ -17,6 +17,39 @@ personalizar e contribuir sem depender dos caminhos da minha máquina.
 ![Windows Terminal](https://img.shields.io/badge/Windows%20Terminal-ready-00E5FF)
 ![License](https://img.shields.io/badge/license-MIT-67FF9A)
 
+## Comece Aqui
+
+Se você quer só instalar sem estudar tudo agora, use o setup guiado:
+
+```powershell
+git clone git@github.com:bieltrue95/cyberpunk-pwsh-terminal.git
+cd cyberpunk-pwsh-terminal
+pwsh -NoLogo -NoProfile -File .\scripts\check.ps1
+pwsh -NoLogo -NoProfile -ExecutionPolicy Bypass -File .\setup.ps1
+wt -p dev
+```
+
+Sem chave SSH no GitHub? Use HTTPS:
+
+```powershell
+git clone https://github.com/bieltrue95/cyberpunk-pwsh-terminal.git
+```
+
+Guia para iniciantes: [docs/GETTING_STARTED.md](docs/GETTING_STARTED.md).
+
+## Se Der Ruim
+
+Abra uma sessão sem carregar profile e rode o diagnóstico:
+
+```powershell
+pwsh -NoLogo -NoProfile
+cd cyberpunk-pwsh-terminal
+.\scripts\check.ps1
+```
+
+Backups e comandos de restauração ficam documentados em
+[docs/BACKUP_RESTORE.md](docs/BACKUP_RESTORE.md).
+
 ## Galeria
 
 | Listagem com ícones | Histórico e busca |
@@ -26,6 +59,10 @@ personalizar e contribuir sem depender dos caminhos da minha máquina.
 | Regras por dados | Instalação segura |
 | --- | --- |
 | ![Arquitetura de regras data-driven](screenshots/data-driven-rules.svg) | ![Fluxo de instalação segura](screenshots/safe-install-flow.svg) |
+
+| Começo rápido | Modo emergência |
+| --- | --- |
+| ![Fluxo de começo rápido](screenshots/beginner-quick-start.svg) | ![Fluxo de restauração emergencial](screenshots/emergency-restore.svg) |
 
 As imagens atuais são SVGs versionados no próprio repositório. Isso garante que
 o GitHub renderize a documentação sem depender de hospedagem externa. Capturas
@@ -42,6 +79,7 @@ PNG reais do Windows Terminal podem ser adicionadas depois em `screenshots/`.
   cloud, Office, certificados, mídia, arquivos compactados, bancos e linguagens.
 - Tema cyberpunk minimalista para oh-my-posh.
 - Snippet de perfil do Windows Terminal e esquema de cores `Cyberpunk2026`.
+- Setup guiado (`setup.ps1`) para instalação com perguntas e validações.
 - Instalador seguro com backup antes de substituir arquivos.
 - Merge opcional do Windows Terminal com backup e validação de JSON.
 - Diagnóstico e smoke test usados também pelo GitHub Actions.
@@ -84,7 +122,7 @@ Instale a fonte `FiraCode Nerd Font Mono` pelo Nerd Fonts e selecione essa fonte
 no Windows Terminal. Se os ícones aparecerem como quadrados ou pontos de
 interrogação, a fonte está ausente ou o perfil do terminal está usando outra.
 
-## Início Rápido
+## Início Rápido Manual
 
 Clone o repositório:
 
@@ -99,7 +137,13 @@ Rode o diagnóstico antes de instalar:
 pwsh -NoLogo -NoProfile -File .\scripts\check.ps1
 ```
 
-Instale profile, tema e regras:
+Instale com o setup guiado:
+
+```powershell
+pwsh -NoLogo -NoProfile -ExecutionPolicy Bypass -File .\setup.ps1
+```
+
+Ou instale manualmente apenas profile, tema e regras:
 
 ```powershell
 .\install.ps1
@@ -298,6 +342,7 @@ Mais correções estão em [docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md).
 ## Documentação
 
 - [Instalação](docs/INSTALL.md)
+- [Comece aqui](docs/GETTING_STARTED.md)
 - [Backup e restauração](docs/BACKUP_RESTORE.md)
 - [Arquitetura](docs/ARCHITECTURE.md)
 - [Screenshots](docs/SCREENSHOTS.md)

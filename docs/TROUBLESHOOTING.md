@@ -2,6 +2,22 @@
 
 Idioma: Português do Brasil | [English](en/TROUBLESHOOTING.md)
 
+## Primeiros Socorros
+
+Se o terminal abriu quebrado ou o profile não carrega, entre sem profile:
+
+```powershell
+pwsh -NoLogo -NoProfile
+```
+
+Depois rode o diagnóstico a partir da pasta do repositório:
+
+```powershell
+.\scripts\check.ps1
+```
+
+Se precisar voltar atrás, use o guia de [Backup e restauração](BACKUP_RESTORE.md).
+
 ## Ícones Aparecem Como Quadrados
 
 Instale uma Nerd Font e selecione-a no Windows Terminal:

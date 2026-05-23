@@ -21,3 +21,6 @@ All notable changes to this project will be documented in this file.
 - Portuguese-Brazilian documentation as the primary docs, with English as secondary docs.
 - Backup locations and restore instructions in install/troubleshooting docs.
 - Dedicated bilingual backup and restore guide.
+- Guided `setup.ps1` onboarding script for beginner-friendly installs.
+- Bilingual getting-started guide with emergency recovery path.
+- Additional SVG previews for quick start and emergency restore flows.

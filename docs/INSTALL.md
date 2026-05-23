@@ -5,6 +5,17 @@ Idioma: Português do Brasil | [English](en/INSTALL.md)
 O instalador copia o profile portátil para o caminho de profile do usuário atual
 e coloca o tema do oh-my-posh e os dados de regras ao lado dele.
 
+## Instalação Recomendada Para Iniciantes
+
+Use o orquestrador guiado. Ele pergunta antes de alterar coisas importantes,
+roda diagnóstico e chama `install.ps1` por baixo:
+
+```powershell
+pwsh -NoLogo -NoProfile -ExecutionPolicy Bypass -File .\setup.ps1
+```
+
+Fluxo passo a passo: [Comece aqui](GETTING_STARTED.md).
+
 ## Pré-Requisitos
 
 Antes de instalar, confirme que a máquina tem:
@@ -37,6 +48,9 @@ pwsh -NoLogo -NoProfile -File .\scripts\check.ps1
 ```
 
 ## Instalação Padrão
+
+Use este modo se você já conferiu pré-requisitos e quer apenas copiar profile,
+tema e regras:
 
 ```powershell
 .\install.ps1
@@ -133,6 +147,18 @@ Guia completo com formatos, caminhos, listagem e restauração:
 [Backup e restauração](BACKUP_RESTORE.md).
 
 ## Flags Opcionais
+
+Setup guiado sem perguntas, útil para automação local:
+
+```powershell
+.\setup.ps1 -NonInteractive
+```
+
+Setup guiado instalando dependências ausentes com `winget`:
+
+```powershell
+.\setup.ps1 -InstallDependencies
+```
 
 Instalar oh-my-posh via winget quando estiver ausente:
 

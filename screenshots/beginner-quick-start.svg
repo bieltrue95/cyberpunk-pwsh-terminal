@@ -1,0 +1,61 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="560" viewBox="0 0 1280 560" role="img" aria-labelledby="title desc">
+  <title id="title">Beginner quick start flow</title>
+  <desc id="desc">Cyberpunk styled quick start cards showing clone, check, setup, and open terminal steps.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#050711"/>
+      <stop offset="0.55" stop-color="#071523"/>
+      <stop offset="1" stop-color="#03191c"/>
+    </linearGradient>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <rect width="1280" height="560" fill="url(#bg)"/>
+  <path d="M0 498 C220 430 360 590 590 508 C820 426 1010 470 1280 390" fill="none" stroke="#00e5ff" stroke-width="2" opacity="0.35"/>
+  <path d="M0 520 C260 450 390 610 650 522 C850 454 1030 498 1280 420" fill="none" stroke="#ff2bd6" stroke-width="2" opacity="0.24"/>
+  <text x="72" y="78" fill="#f4f7ff" font-size="40" font-weight="800" font-family="Fira Code, Cascadia Mono, Consolas, monospace">Comece aqui: 5 comandos</text>
+  <text x="74" y="118" fill="#b9c6df" font-size="21" font-family="Fira Code, Cascadia Mono, Consolas, monospace">Fluxo recomendado para iniciantes: validar antes, instalar guiado, abrir o perfil dev.</text>
+
+  <g font-family="Fira Code, Cascadia Mono, Consolas, monospace" font-size="18" font-weight="700">
+    <rect x="72" y="176" width="240" height="210" rx="22" fill="#101827" stroke="#63f3ff" stroke-width="2"/>
+    <text x="102" y="222" fill="#63f3ff">1. clone</text>
+    <text x="102" y="272" fill="#eef3ff" font-size="16">git clone ...</text>
+    <text x="102" y="306" fill="#ff45d8" font-size="16">cd cyberpunk-...</text>
+    <text x="102" y="346" fill="#67ff9a" font-size="15">repo local pronto</text>
+
+    <rect x="372" y="176" width="240" height="210" rx="22" fill="#101827" stroke="#ffd166" stroke-width="2"/>
+    <text x="402" y="222" fill="#ffd166">2. check</text>
+    <text x="402" y="272" fill="#eef3ff" font-size="16">scripts/check.ps1</text>
+    <text x="402" y="306" fill="#63f3ff" font-size="16">PowerShell 7</text>
+    <text x="402" y="346" fill="#67ff9a" font-size="15">falhas antes de mexer</text>
+
+    <rect x="672" y="176" width="240" height="210" rx="22" fill="#101827" stroke="#ff45d8" stroke-width="2"/>
+    <text x="702" y="222" fill="#ff45d8">3. setup</text>
+    <text x="702" y="272" fill="#eef3ff" font-size="16">setup.ps1</text>
+    <text x="702" y="306" fill="#ffd166" font-size="16">perguntas seguras</text>
+    <text x="702" y="346" fill="#67ff9a" font-size="15">backup automatico</text>
+
+    <rect x="972" y="176" width="236" height="210" rx="22" fill="#101827" stroke="#67ff9a" stroke-width="2"/>
+    <text x="1002" y="222" fill="#67ff9a">4. dev</text>
+    <text x="1002" y="272" fill="#eef3ff" font-size="16">wt -p dev</text>
+    <text x="1002" y="306" fill="#63f3ff" font-size="16">ll ~</text>
+    <text x="1002" y="346" fill="#ff45d8" font-size="15">icones + neon</text>
+  </g>
+
+  <g filter="url(#glow)">
+    <circle cx="342" cy="281" r="6" fill="#63f3ff"/>
+    <path d="M322 281 H356" stroke="#63f3ff" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="642" cy="281" r="6" fill="#ffd166"/>
+    <path d="M622 281 H656" stroke="#ffd166" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="942" cy="281" r="6" fill="#ff45d8"/>
+    <path d="M922 281 H956" stroke="#ff45d8" stroke-width="4" stroke-linecap="round"/>
+  </g>
+
+  <rect x="74" y="438" width="1134" height="54" rx="16" fill="#08111f" stroke="#273456"/>
+  <text x="104" y="472" fill="#f4f7ff" font-size="18" font-family="Fira Code, Cascadia Mono, Consolas, monospace">Comando principal: pwsh -NoLogo -NoProfile -ExecutionPolicy Bypass -File .\setup.ps1</text>
+</svg>

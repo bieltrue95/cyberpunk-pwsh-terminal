@@ -17,6 +17,40 @@ contribute to safely.
 ![Windows Terminal](https://img.shields.io/badge/Windows%20Terminal-ready-00E5FF)
 ![License](https://img.shields.io/badge/license-MIT-67FF9A)
 
+## Start Here
+
+If you just want to install without reading everything first, use the guided
+setup:
+
+```powershell
+git clone git@github.com:bieltrue95/cyberpunk-pwsh-terminal.git
+cd cyberpunk-pwsh-terminal
+pwsh -NoLogo -NoProfile -File .\scripts\check.ps1
+pwsh -NoLogo -NoProfile -ExecutionPolicy Bypass -File .\setup.ps1
+wt -p dev
+```
+
+No GitHub SSH key yet? Use HTTPS:
+
+```powershell
+git clone https://github.com/bieltrue95/cyberpunk-pwsh-terminal.git
+```
+
+Beginner guide: [docs/en/GETTING_STARTED.md](docs/en/GETTING_STARTED.md).
+
+## If Something Breaks
+
+Open a shell without loading the profile and run diagnostics:
+
+```powershell
+pwsh -NoLogo -NoProfile
+cd cyberpunk-pwsh-terminal
+.\scripts\check.ps1
+```
+
+Backup locations and restore commands are documented in
+[docs/en/BACKUP_RESTORE.md](docs/en/BACKUP_RESTORE.md).
+
 ## Preview Gallery
 
 | Terminal renderer | History search |
@@ -26,6 +60,10 @@ contribute to safely.
 | Data-driven rules | Safe installer |
 | --- | --- |
 | ![Data-driven rules architecture](screenshots/data-driven-rules.svg) | ![Safe install flow](screenshots/safe-install-flow.svg) |
+
+| Quick start | Emergency mode |
+| --- | --- |
+| ![Beginner quick start flow](screenshots/beginner-quick-start.svg) | ![Emergency restore flow](screenshots/emergency-restore.svg) |
 
 The previews are committed as SVG files so the README renders nicely on GitHub
 without external image hosting. Real PNG screenshots can be added later in the
@@ -42,6 +80,7 @@ same `screenshots/` folder.
   Office files, certificates, media, archives, databases, and common languages.
 - Minimal cyberpunk oh-my-posh prompt theme.
 - Windows Terminal `dev` profile snippet and `Cyberpunk2026` color scheme.
+- Guided setup (`setup.ps1`) with prompts and validation.
 - Safe installer that backs up existing files before replacing anything.
 - Optional Windows Terminal merge with backup and JSON validation.
 - Diagnostics and smoke tests that are also used by GitHub Actions.
@@ -84,7 +123,7 @@ Install `FiraCode Nerd Font Mono` from Nerd Fonts, then select it in Windows
 Terminal. If icons show as boxes, the font is missing or the terminal profile is
 using another font.
 
-## Quick Start
+## Manual Quick Start
 
 Clone the repo:
 
@@ -99,7 +138,13 @@ Run diagnostics before installing:
 pwsh -NoLogo -NoProfile -File .\scripts\check.ps1
 ```
 
-Install the profile, theme, and rule data:
+Install with the guided setup:
+
+```powershell
+pwsh -NoLogo -NoProfile -ExecutionPolicy Bypass -File .\setup.ps1
+```
+
+Or manually install only the profile, theme, and rule data:
 
 ```powershell
 .\install.ps1
@@ -292,11 +337,12 @@ If `ls` works but icon colors are not what you expect, edit:
 data\cyber-item-rules.psd1
 ```
 
-More fixes live in [docs/TROUBLESHOOTING.md](docs/en/TROUBLESHOOTING.md).
+More fixes live in [docs/en/TROUBLESHOOTING.md](docs/en/TROUBLESHOOTING.md).
 
 ## Documentation
 
 - [Install notes](docs/en/INSTALL.md)
+- [Getting started](docs/en/GETTING_STARTED.md)
 - [Backup and restore](docs/en/BACKUP_RESTORE.md)
 - [Architecture](docs/en/ARCHITECTURE.md)
 - [Screenshots](docs/en/SCREENSHOTS.md)
