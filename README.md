@@ -44,16 +44,43 @@ same `screenshots/` folder.
 - Optional Windows Terminal merge with backup and JSON validation.
 - Diagnostics and smoke tests that are also used by GitHub Actions.
 
-## Requirements
+## Prerequisites
 
-- Windows 10/11.
-- PowerShell 7 (`pwsh`).
-- Windows Terminal.
-- FiraCode Nerd Font Mono.
-- oh-my-posh.
+Install or verify these before applying the profile:
+
+| Requirement | Why it matters | Required |
+| --- | --- | --- |
+| Windows 10/11 | Target platform for this setup. | Yes |
+| PowerShell 7 (`pwsh`) | The profile is designed for modern PowerShell, not Windows PowerShell 5.1. | Yes |
+| Git | Needed to clone/update the repository. | Yes for repo install |
+| Windows Terminal | Needed for the `Cyberpunk2026` scheme, acrylic, tab styling, and proper ANSI colors. | Recommended |
+| FiraCode Nerd Font Mono | Required for folder/file icons and prompt glyphs to render correctly. | Yes for icons |
+| oh-my-posh | Provides the styled prompt. | Recommended |
+
+Quick verification:
+
+```powershell
+pwsh --version
+git --version
+wt --version
+oh-my-posh --version
+```
 
 The profile still works without oh-my-posh, but the styled prompt only loads
 when `oh-my-posh` is installed and available in `PATH`.
+
+Install common dependencies with `winget`:
+
+```powershell
+winget install Microsoft.PowerShell
+winget install Git.Git
+winget install Microsoft.WindowsTerminal
+winget install JanDeDobbeleer.OhMyPosh -s winget
+```
+
+Install `FiraCode Nerd Font Mono` from Nerd Fonts, then select it in Windows
+Terminal. If icons show as boxes, the font is missing or the terminal profile is
+using another font.
 
 ## Quick Start
 
