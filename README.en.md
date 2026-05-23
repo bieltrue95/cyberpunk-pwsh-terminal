@@ -134,6 +134,27 @@ Use a custom Windows Terminal settings path:
 The Terminal merge is opt-in. It creates a timestamped backup and validates JSON
 before writing anything.
 
+## Backups And Restore
+
+The installer saves backups next to the original files.
+
+| Backup | Where it lives | Format |
+| --- | --- | --- |
+| Previous profile | Same folder as `$PROFILE` | `Microsoft.PowerShell_profile.ps1.bak-yyyyMMdd-HHmmss` |
+| Uninstall backup | Same folder as `$PROFILE` | `Microsoft.PowerShell_profile.ps1.backup-before-uninstall-yyyyMMdd-HHmmss` |
+| Windows Terminal | Same folder as `settings.json` | `settings.json.bak-yyyyMMdd-HHmmss` |
+
+Installed files usually live in:
+
+```text
+C:\Users\<you>\Documents\PowerShell\Microsoft.PowerShell_profile.ps1
+C:\Users\<you>\Documents\PowerShell\themes\cyberpunk-clean.omp.json
+C:\Users\<you>\Documents\PowerShell\data\cyber-item-rules.psd1
+```
+
+For restore details, see [docs/en/INSTALL.md](docs/en/INSTALL.md) and
+[docs/en/TROUBLESHOOTING.md](docs/en/TROUBLESHOOTING.md).
+
 ## Daily Commands
 
 ```powershell

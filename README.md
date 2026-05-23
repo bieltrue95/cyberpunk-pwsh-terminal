@@ -134,6 +134,27 @@ Usar um caminho customizado para `settings.json` do Windows Terminal:
 O merge do Windows Terminal é opcional. Ele cria backup com timestamp e valida o
 JSON antes de escrever qualquer alteração.
 
+## Backups E Restauração
+
+O instalador salva backups ao lado dos arquivos originais.
+
+| Backup | Onde fica | Formato |
+| --- | --- | --- |
+| Profile antigo | Mesma pasta do `$PROFILE` | `Microsoft.PowerShell_profile.ps1.bak-yyyyMMdd-HHmmss` |
+| Uninstall | Mesma pasta do `$PROFILE` | `Microsoft.PowerShell_profile.ps1.backup-before-uninstall-yyyyMMdd-HHmmss` |
+| Windows Terminal | Mesma pasta do `settings.json` | `settings.json.bak-yyyyMMdd-HHmmss` |
+
+Arquivos instalados normalmente ficam em:
+
+```text
+C:\Users\<voce>\Documents\PowerShell\Microsoft.PowerShell_profile.ps1
+C:\Users\<voce>\Documents\PowerShell\themes\cyberpunk-clean.omp.json
+C:\Users\<voce>\Documents\PowerShell\data\cyber-item-rules.psd1
+```
+
+Para detalhes de restauração, veja [docs/INSTALL.md](docs/INSTALL.md) e
+[docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md).
+
 ## Comandos Do Dia A Dia
 
 ```powershell

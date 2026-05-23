@@ -58,6 +58,58 @@ settings.json.bak-yyyyMMdd-HHmmss
 
 Restaure substituindo `settings.json` pelo backup.
 
+Comando exemplo para Windows Terminal estável:
+
+```powershell
+$settingsPath = "$env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"
+$backupPath = "$settingsPath.bak-yyyyMMdd-HHmmss"
+Copy-Item -LiteralPath $backupPath -Destination $settingsPath -Force
+```
+
+Comando exemplo para Windows Terminal Preview:
+
+```powershell
+$settingsPath = "$env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminalPreview_8wekyb3d8bbwe\LocalState\settings.json"
+$backupPath = "$settingsPath.bak-yyyyMMdd-HHmmss"
+Copy-Item -LiteralPath $backupPath -Destination $settingsPath -Force
+```
+
+## Quero Voltar Meu Profile Antigo
+
+O `install.ps1` cria backup do profile antigo ao lado do `$PROFILE`, com este
+formato:
+
+```text
+Microsoft.PowerShell_profile.ps1.bak-yyyyMMdd-HHmmss
+```
+
+Para restaurar:
+
+```powershell
+$profilePath = $PROFILE
+$backupPath = "C:\Users\<voce>\Documents\PowerShell\Microsoft.PowerShell_profile.ps1.bak-yyyyMMdd-HHmmss"
+Copy-Item -LiteralPath $backupPath -Destination $profilePath -Force
+. $PROFILE
+```
+
+Para listar backups disponíveis:
+
+```powershell
+Get-ChildItem -LiteralPath (Split-Path -Parent $PROFILE) -Filter "*.bak-*"
+Get-ChildItem -LiteralPath (Split-Path -Parent $PROFILE) -Filter "*.backup-before-uninstall-*"
+```
+
+## Quero Saber O Que Foi Instalado
+
+Use:
+
+```powershell
+$profileDir = Split-Path -Parent $PROFILE
+Get-Item $PROFILE
+Get-ChildItem -LiteralPath (Join-Path $profileDir "themes")
+Get-ChildItem -LiteralPath (Join-Path $profileDir "data")
+```
+
 ## `curl` Parece Diferente
 
 PowerShell pode mapear `curl` para `Invoke-WebRequest`. Este setup mantém esse

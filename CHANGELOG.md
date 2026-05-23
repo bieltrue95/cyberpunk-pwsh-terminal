@@ -19,3 +19,4 @@ All notable changes to this project will be documented in this file.
 - Screenshot gallery using committed SVG previews.
 - Architecture, screenshots, and troubleshooting documentation.
 - Portuguese-Brazilian documentation as the primary docs, with English as secondary docs.
+- Backup locations and restore instructions in install/troubleshooting docs.
