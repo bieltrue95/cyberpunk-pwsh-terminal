@@ -1,0 +1,83 @@
+﻿{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "version": 4,
+  "final_space": true,
+  "console_title_template": "dev",
+  "transient_prompt": {
+    "foreground": "#63F3FF",
+    "template": "❯ "
+  },
+  "secondary_prompt": {
+    "foreground": "#63F3FF",
+    "template": "❯❯ "
+  },
+  "blocks": [
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "segments": [
+        {
+          "type": "session",
+          "style": "diamond",
+          "leading_diamond": "",
+          "trailing_diamond": "",
+          "foreground": "#0B1020",
+          "background": "#63F3FF",
+          "template": " {{ .UserName }} "
+        },
+        {
+          "type": "path",
+          "style": "powerline",
+          "powerline_symbol": "",
+          "foreground": "#F2F6FF",
+          "background": "#242D4A",
+          "template": "  {{ .Path }} ",
+          "properties": {
+            "style": "folder",
+            "home_icon": "~",
+            "folder_separator_icon": " / "
+          }
+        },
+        {
+          "type": "git",
+          "style": "powerline",
+          "powerline_symbol": "",
+          "foreground": "#0B1020",
+          "background": "#D600FF",
+          "template": " {{ .UpstreamIcon }}{{ .HEAD }}{{ if .BranchStatus }} {{ .BranchStatus }}{{ end }} ",
+          "properties": {
+            "fetch_status": true,
+            "fetch_upstream_icon": true,
+            "branch_icon": " "
+          }
+        },
+        {
+          "type": "status",
+          "style": "plain",
+          "foreground": "#63F3FF",
+          "template": " {{ if gt .Code 0 }}{{ else }}❯{{ end }} "
+        }
+      ]
+    },
+    {
+      "type": "rprompt",
+      "segments": [
+        {
+          "type": "executiontime",
+          "style": "plain",
+          "foreground": "#55A8FF",
+          "template": "{{ if gt .Ms 200 }} {{ .FormattedMs }} {{ end }}"
+        },
+        {
+          "type": "time",
+          "style": "diamond",
+          "leading_diamond": "",
+          "trailing_diamond": "",
+          "foreground": "#0B1020",
+          "background": "#00E5FF",
+          "template": " {{ .CurrentDate | date \"15:04:05\" }} "
+        }
+      ]
+    }
+  ]
+}

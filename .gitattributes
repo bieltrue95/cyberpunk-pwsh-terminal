@@ -1,0 +1,10 @@
+# Normalize text files for cross-machine collaboration.
+* text=auto
+
+# Keep PowerShell scripts Windows-friendly.
+*.ps1 text eol=crlf
+*.psm1 text eol=crlf
+
+# JSON and docs are safe with LF on every platform.
+*.json text eol=lf
+*.md text eol=lf

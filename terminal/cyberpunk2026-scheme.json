@@ -1,0 +1,23 @@
+﻿{
+  "name": "Cyberpunk2026",
+  "background": "#070B14",
+  "foreground": "#E6ECFF",
+  "black": "#0B1020",
+  "red": "#FF3F66",
+  "green": "#3BFF7D",
+  "yellow": "#FFD166",
+  "blue": "#2D7BFF",
+  "purple": "#D600FF",
+  "cyan": "#00E5FF",
+  "white": "#B9C7E6",
+  "brightBlack": "#2B3553",
+  "brightRed": "#FF4D6D",
+  "brightGreen": "#67FF9A",
+  "brightYellow": "#FFE66D",
+  "brightBlue": "#55A8FF",
+  "brightPurple": "#FF4DFF",
+  "brightCyan": "#63F3FF",
+  "brightWhite": "#F2F6FF",
+  "cursorColor": "#00F5FF",
+  "selectionBackground": "#AA00FF"
+}

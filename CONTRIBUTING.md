@@ -1,0 +1,62 @@
+﻿# Contributing
+
+Thanks for helping improve this terminal setup. The project is intentionally
+simple: most visual contributions should happen in data files, not in renderer
+logic.
+
+## Local Validation
+
+Run these before opening a pull request:
+
+```powershell
+pwsh -NoLogo -NoProfile -File .\scripts\check.ps1
+pwsh -NoLogo -NoProfile -File .\scripts\test-profile.ps1
+```
+
+## Adding Icons
+
+Edit:
+
+```text
+data\cyber-item-rules.psd1
+```
+
+Use these sections:
+
+- `DirectoryIconRules` for folder-name regex rules.
+- `FileIconRules` for file-name regex rules.
+- `ExtensionIcons` for extension maps.
+- `DirectoryColorRules` for folder-name color rules.
+- `FileColorRules` for file-name color rules.
+- `ExtensionColors` for extension color maps.
+
+Guidelines:
+
+- Keep regex rules specific enough to avoid surprising matches.
+- Put more specific rules before generic rules.
+- Use lowercase extensions, including the dot: `.json`, `.ps1`, `.png`.
+- Use hex RGB colors in `#RRGGBB` format.
+- Keep files as UTF-8 because Nerd Font glyphs are stored directly.
+
+## Renderer Logic
+
+Only edit `profile\Microsoft.PowerShell_profile.ps1` when changing behavior.
+Examples:
+
+- Column layout.
+- PSReadLine bindings.
+- Prompt/theme loading.
+- How rules are resolved.
+
+Icon additions should almost never require profile logic changes.
+
+## Windows Terminal
+
+Do not commit a full personal Windows Terminal `settings.json`. Use snippets in
+`terminal\` so users can merge safely.
+
+## Security
+
+Do not commit secrets, history files, certificates, private keys, `.env` files,
+or personal paths. The `.gitignore` blocks common cases, but contributors should
+still review their diffs.

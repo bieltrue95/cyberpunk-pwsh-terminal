@@ -1,0 +1,33 @@
+﻿# PowerShell / local state
+*.ps1xml
+*.clixml
+ConsoleHost_history.txt
+PSReadLine/
+
+# Secrets and machine-specific files
+.env
+.env.*
+*.key
+*.pem
+*.pfx
+*.p12
+*.crt
+*.cer
+
+# Backups created by install/uninstall scripts
+*.bak
+*.backup
+*.bak-*
+*.backup-*
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Logs/cache
+*.log
+.cache/
+tmp/
+temp/
