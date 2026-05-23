@@ -1,95 +1,97 @@
-﻿# Troubleshooting
+﻿# Solução De Problemas
 
-## Icons Show As Boxes
+Idioma: Português do Brasil | [English](en/TROUBLESHOOTING.md)
 
-Install a Nerd Font and select it in Windows Terminal:
+## Ícones Aparecem Como Quadrados
+
+Instale uma Nerd Font e selecione-a no Windows Terminal:
 
 ```text
 FiraCode Nerd Font Mono
 ```
 
-Then reopen the terminal tab. If VS Code still shows boxes, set both editor and
-integrated terminal font families to the same Nerd Font.
+Depois reabra a aba do terminal. Se o VS Code ainda mostrar quadrados, configure
+a mesma fonte no editor e no terminal integrado.
 
-## Prompt Is Not Styled
+## Prompt Não Está Estilizado
 
-Check if oh-my-posh is available:
+Verifique se oh-my-posh está disponível:
 
 ```powershell
 oh-my-posh --version
 ```
 
-If it is missing, install it and reopen PowerShell:
+Se estiver ausente, instale e reabra o PowerShell:
 
 ```powershell
 winget install JanDeDobbeleer.OhMyPosh -s winget
 ```
 
-## Profile Does Not Load
+## Profile Não Carrega
 
-Confirm the active profile path:
+Confirme o caminho ativo do profile:
 
 ```powershell
 $PROFILE
 Test-Path $PROFILE
 ```
 
-Reload manually:
+Recarregue manualmente:
 
 ```powershell
 . $PROFILE
 ```
 
-If execution policy blocks local scripts, run PowerShell as your user and use:
+Se a política de execução bloquear scripts locais, use no escopo do usuário:
 
 ```powershell
 Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
 ```
 
-## Windows Terminal Settings Broke
+## Configuração Do Windows Terminal Quebrou
 
-The merge script creates a backup next to the original `settings.json`:
+O script de merge cria backup ao lado do `settings.json` original:
 
 ```text
 settings.json.bak-yyyyMMdd-HHmmss
 ```
 
-Restore by replacing `settings.json` with the backup.
+Restaure substituindo `settings.json` pelo backup.
 
-## `curl` Looks Different
+## `curl` Parece Diferente
 
-PowerShell may map `curl` to `Invoke-WebRequest`. This setup intentionally keeps
-that behavior and provides `ccurl` for the native binary:
+PowerShell pode mapear `curl` para `Invoke-WebRequest`. Este setup mantém esse
+comportamento e oferece `ccurl` para chamar o binário nativo:
 
 ```powershell
 ccurl --version
 curl.exe --version
 ```
 
-## `ls` Is Pretty But Not Pipeline-Friendly
+## `ls` É Bonito, Mas Não É Para Pipeline
 
-The custom `ls` renderer is for human-readable terminal output. For scripts,
-prefer native PowerShell:
+O renderer customizado de `ls` é para saída visual. Para scripts, prefira o
+PowerShell nativo:
 
 ```powershell
 Get-ChildItem | Where-Object Extension -eq '.ps1'
 ```
 
-## Colors Or Icons Need Tweaking
+## Quero Ajustar Cores Ou Ícones
 
-Edit:
+Edite:
 
 ```text
 data\cyber-item-rules.psd1
 ```
 
-Then reload:
+Depois recarregue:
 
 ```powershell
 . $PROFILE
 ```
 
-## Run The Full Check
+## Rodar Verificação Completa
 
 ```powershell
 pwsh -NoLogo -NoProfile -File .\scripts\check.ps1

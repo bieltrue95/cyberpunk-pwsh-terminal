@@ -18,3 +18,4 @@ All notable changes to this project will be documented in this file.
 - Contribution guide and MIT license.
 - Screenshot gallery using committed SVG previews.
 - Architecture, screenshots, and troubleshooting documentation.
+- Portuguese-Brazilian documentation as the primary docs, with English as secondary docs.

@@ -1,62 +1,64 @@
-﻿# Contributing
+﻿# Como Contribuir
 
-Thanks for helping improve this terminal setup. The project is intentionally
-simple: most visual contributions should happen in data files, not in renderer
-logic.
+Idioma: Português do Brasil | [English](CONTRIBUTING.en.md)
 
-## Local Validation
+Obrigado por ajudar a melhorar este setup de terminal. A ideia do projeto é ser
+simples: a maioria das contribuições visuais deve acontecer em arquivos de
+dados, não na lógica do renderer.
 
-Run these before opening a pull request:
+## Validação Local
+
+Rode antes de abrir um pull request:
 
 ```powershell
 pwsh -NoLogo -NoProfile -File .\scripts\check.ps1
 pwsh -NoLogo -NoProfile -File .\scripts\test-profile.ps1
 ```
 
-## Adding Icons
+## Adicionar Ícones
 
-Edit:
+Edite:
 
 ```text
 data\cyber-item-rules.psd1
 ```
 
-Use these sections:
+Use estas seções:
 
-- `DirectoryIconRules` for folder-name regex rules.
-- `FileIconRules` for file-name regex rules.
-- `ExtensionIcons` for extension maps.
-- `DirectoryColorRules` for folder-name color rules.
-- `FileColorRules` for file-name color rules.
-- `ExtensionColors` for extension color maps.
+- `DirectoryIconRules` para regras regex de pastas.
+- `FileIconRules` para regras regex de nomes de arquivos.
+- `ExtensionIcons` para mapas de extensões.
+- `DirectoryColorRules` para regras de cores de pastas.
+- `FileColorRules` para regras de cores de nomes de arquivos.
+- `ExtensionColors` para mapas de cores por extensão.
 
-Guidelines:
+Diretrizes:
 
-- Keep regex rules specific enough to avoid surprising matches.
-- Put more specific rules before generic rules.
-- Use lowercase extensions, including the dot: `.json`, `.ps1`, `.png`.
-- Use hex RGB colors in `#RRGGBB` format.
-- Keep files as UTF-8 because Nerd Font glyphs are stored directly.
+- Mantenha regex específicas o bastante para evitar matches inesperados.
+- Coloque regras mais específicas antes das genéricas.
+- Use extensões em minúsculo, incluindo ponto: `.json`, `.ps1`, `.png`.
+- Use cores RGB hex no formato `#RRGGBB`.
+- Mantenha arquivos em UTF-8 porque glyphs Nerd Font ficam gravados direto.
 
-## Renderer Logic
+## Lógica Do Renderer
 
-Only edit `profile\Microsoft.PowerShell_profile.ps1` when changing behavior.
-Examples:
+Edite `profile\Microsoft.PowerShell_profile.ps1` somente quando mudar
+comportamento. Exemplos:
 
-- Column layout.
-- PSReadLine bindings.
-- Prompt/theme loading.
-- How rules are resolved.
+- Layout de colunas.
+- Atalhos do PSReadLine.
+- Carregamento de prompt/tema.
+- Como as regras são resolvidas.
 
-Icon additions should almost never require profile logic changes.
+Adicionar ícones quase nunca deve exigir mudança na lógica do profile.
 
 ## Windows Terminal
 
-Do not commit a full personal Windows Terminal `settings.json`. Use snippets in
-`terminal\` so users can merge safely.
+Não commite um `settings.json` pessoal completo do Windows Terminal. Use snippets
+em `terminal\` para permitir merge seguro.
 
-## Security
+## Segurança
 
-Do not commit secrets, history files, certificates, private keys, `.env` files,
-or personal paths. The `.gitignore` blocks common cases, but contributors should
-still review their diffs.
+Não commite segredos, histórico, certificados, chaves privadas, arquivos `.env`
+ou caminhos pessoais. O `.gitignore` bloqueia casos comuns, mas revise sempre o
+diff antes de subir alterações.

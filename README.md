@@ -1,63 +1,65 @@
 ﻿# Cyberpunk PowerShell Terminal
 
-![Cyberpunk PowerShell Terminal preview](screenshots/terminal-showcase.svg)
+Idioma: Português do Brasil | [English](README.en.md)
 
-A portable Windows Terminal + PowerShell 7 setup with a cyberpunk visual style,
-fast history search, an oh-my-posh prompt, and a custom `ls` renderer powered by
-Nerd Font icons and neon RGB colors.
+![Prévia do Cyberpunk PowerShell Terminal](screenshots/terminal-showcase.svg)
 
-This project started as a real daily-driver terminal setup and was cleaned up
-into a reproducible kit that other people can inspect, install, customize, and
-contribute to safely.
+Um kit portátil para Windows Terminal + PowerShell 7 com visual cyberpunk,
+busca rápida no histórico, prompt com oh-my-posh e um renderer customizado de
+`ls` com ícones Nerd Font e cores neon RGB.
+
+Este projeto nasceu de um setup real de uso diário e foi organizado para virar
+um pacote reproduzível: qualquer pessoa pode clonar, instalar, estudar,
+personalizar e contribuir sem depender dos caminhos da minha máquina.
 
 [![CI](https://github.com/bieltrue95/cyberpunk-pwsh-terminal/actions/workflows/ci.yml/badge.svg)](https://github.com/bieltrue95/cyberpunk-pwsh-terminal/actions/workflows/ci.yml)
 ![PowerShell](https://img.shields.io/badge/PowerShell-7+-5391FE?logo=powershell&logoColor=white)
 ![Windows Terminal](https://img.shields.io/badge/Windows%20Terminal-ready-00E5FF)
 ![License](https://img.shields.io/badge/license-MIT-67FF9A)
 
-## Preview Gallery
+## Galeria
 
-| Terminal renderer | History search |
+| Listagem com ícones | Histórico e busca |
 | --- | --- |
-| ![Terminal listing with icons and colors](screenshots/terminal-showcase.svg) | ![History search preview](screenshots/history-search.svg) |
+| ![Listagem do terminal com ícones e cores](screenshots/terminal-showcase.svg) | ![Busca de histórico](screenshots/history-search.svg) |
 
-| Data-driven rules | Safe installer |
+| Regras por dados | Instalação segura |
 | --- | --- |
-| ![Data-driven rules architecture](screenshots/data-driven-rules.svg) | ![Safe install flow](screenshots/safe-install-flow.svg) |
+| ![Arquitetura de regras data-driven](screenshots/data-driven-rules.svg) | ![Fluxo de instalação segura](screenshots/safe-install-flow.svg) |
 
-The previews are committed as SVG files so the README renders nicely on GitHub
-without external image hosting. Real PNG screenshots can be added later in the
-same `screenshots/` folder.
+As imagens atuais são SVGs versionados no próprio repositório. Isso garante que
+o GitHub renderize a documentação sem depender de hospedagem externa. Capturas
+PNG reais do Windows Terminal podem ser adicionadas depois em `screenshots/`.
 
-## What You Get
+## O Que Este Projeto Entrega
 
-- PowerShell 7 profile focused on developer workflow.
-- Persistent PSReadLine history with prefix search on `UpArrow` and `DownArrow`.
-- `hist` and `hfind` helpers for searching saved command history.
-- Custom `ls`, `dir`, `l`, and `ll` renderer with icon-aware, colorized output.
-- Data-driven icon/color rules in `data/cyber-item-rules.psd1`.
-- Broad coverage for Windows folders, user folders, dev tools, cloud folders,
-  Office files, certificates, media, archives, databases, and common languages.
-- Minimal cyberpunk oh-my-posh prompt theme.
-- Windows Terminal `dev` profile snippet and `Cyberpunk2026` color scheme.
-- Safe installer that backs up existing files before replacing anything.
-- Optional Windows Terminal merge with backup and JSON validation.
-- Diagnostics and smoke tests that are also used by GitHub Actions.
+- Profile de PowerShell 7 focado em fluxo de desenvolvimento.
+- Histórico persistente com busca por prefixo usando `UpArrow` e `DownArrow`.
+- Helpers `hist` e `hfind` para consultar comandos salvos.
+- Renderer customizado para `ls`, `dir`, `l` e `ll` com ícones e cores RGB.
+- Regras de ícones e cores em `data/cyber-item-rules.psd1`.
+- Cobertura ampla para pastas do Windows, pastas de usuário, ferramentas dev,
+  cloud, Office, certificados, mídia, arquivos compactados, bancos e linguagens.
+- Tema cyberpunk minimalista para oh-my-posh.
+- Snippet de perfil do Windows Terminal e esquema de cores `Cyberpunk2026`.
+- Instalador seguro com backup antes de substituir arquivos.
+- Merge opcional do Windows Terminal com backup e validação de JSON.
+- Diagnóstico e smoke test usados também pelo GitHub Actions.
 
-## Prerequisites
+## Pré-Requisitos
 
-Install or verify these before applying the profile:
+Instale ou verifique estes itens antes de aplicar o profile:
 
-| Requirement | Why it matters | Required |
+| Requisito | Por que importa | Obrigatório |
 | --- | --- | --- |
-| Windows 10/11 | Target platform for this setup. | Yes |
-| PowerShell 7 (`pwsh`) | The profile is designed for modern PowerShell, not Windows PowerShell 5.1. | Yes |
-| Git | Needed to clone/update the repository. | Yes for repo install |
-| Windows Terminal | Needed for the `Cyberpunk2026` scheme, acrylic, tab styling, and proper ANSI colors. | Recommended |
-| FiraCode Nerd Font Mono | Required for folder/file icons and prompt glyphs to render correctly. | Yes for icons |
-| oh-my-posh | Provides the styled prompt. | Recommended |
+| Windows 10/11 | Plataforma alvo deste setup. | Sim |
+| PowerShell 7 (`pwsh`) | O profile foi feito para PowerShell moderno, não para Windows PowerShell 5.1. | Sim |
+| Git | Necessário para clonar e atualizar o repositório. | Sim para instalação via repo |
+| Windows Terminal | Necessário para esquema `Cyberpunk2026`, acrylic, abas e ANSI true color. | Recomendado |
+| FiraCode Nerd Font Mono | Necessário para renderizar ícones e glyphs do prompt. | Sim para ícones |
+| oh-my-posh | Responsável pelo prompt estilizado. | Recomendado |
 
-Quick verification:
+Verificação rápida:
 
 ```powershell
 pwsh --version
@@ -66,10 +68,10 @@ wt --version
 oh-my-posh --version
 ```
 
-The profile still works without oh-my-posh, but the styled prompt only loads
-when `oh-my-posh` is installed and available in `PATH`.
+O profile ainda carrega sem oh-my-posh, mas o prompt estilizado só aparece se o
+binário estiver instalado e disponível no `PATH`.
 
-Install common dependencies with `winget`:
+Instalação comum com `winget`:
 
 ```powershell
 winget install Microsoft.PowerShell
@@ -78,61 +80,61 @@ winget install Microsoft.WindowsTerminal
 winget install JanDeDobbeleer.OhMyPosh -s winget
 ```
 
-Install `FiraCode Nerd Font Mono` from Nerd Fonts, then select it in Windows
-Terminal. If icons show as boxes, the font is missing or the terminal profile is
-using another font.
+Instale a fonte `FiraCode Nerd Font Mono` pelo Nerd Fonts e selecione essa fonte
+no Windows Terminal. Se os ícones aparecerem como quadrados ou pontos de
+interrogação, a fonte está ausente ou o perfil do terminal está usando outra.
 
-## Quick Start
+## Início Rápido
 
-Clone the repo:
+Clone o repositório:
 
 ```powershell
 git clone git@github.com:bieltrue95/cyberpunk-pwsh-terminal.git
 cd cyberpunk-pwsh-terminal
 ```
 
-Run diagnostics before installing:
+Rode o diagnóstico antes de instalar:
 
 ```powershell
 pwsh -NoLogo -NoProfile -File .\scripts\check.ps1
 ```
 
-Install the profile, theme, and rule data:
+Instale profile, tema e regras:
 
 ```powershell
 .\install.ps1
 ```
 
-Reload the current shell or open a new Windows Terminal tab:
+Recarregue a sessão atual ou abra uma nova aba do Windows Terminal:
 
 ```powershell
 . $PROFILE
 ```
 
-## Optional Install Modes
+## Modos Opcionais De Instalação
 
-Install oh-my-posh with `winget` when missing:
+Instalar oh-my-posh com `winget` se ele estiver ausente:
 
 ```powershell
 .\install.ps1 -InstallOhMyPosh
 ```
 
-Merge the Windows Terminal profile and color scheme automatically:
+Mesclar automaticamente o perfil e o esquema de cores no Windows Terminal:
 
 ```powershell
 .\install.ps1 -ConfigureWindowsTerminal
 ```
 
-Use a custom Windows Terminal settings path:
+Usar um caminho customizado para `settings.json` do Windows Terminal:
 
 ```powershell
 .\install.ps1 -ConfigureWindowsTerminal -TerminalSettingsPath "C:\path\to\settings.json"
 ```
 
-The Terminal merge is opt-in. It creates a timestamped backup and validates JSON
-before writing anything.
+O merge do Windows Terminal é opcional. Ele cria backup com timestamp e valida o
+JSON antes de escrever qualquer alteração.
 
-## Daily Commands
+## Comandos Do Dia A Dia
 
 ```powershell
 ls
@@ -143,36 +145,35 @@ hfind docker
 ccurl --version
 ```
 
-## How The Icon Engine Works
+## Como O Motor De Ícones Funciona
 
-The renderer is intentionally split into logic and data.
+O renderer foi separado intencionalmente em lógica e dados.
 
 ```text
-data\cyber-item-rules.psd1       # icon/color rules
-profile\Microsoft.PowerShell_profile.ps1  # rule engine and renderer
+data\cyber-item-rules.psd1                 # regras de ícones e cores
+profile\Microsoft.PowerShell_profile.ps1   # motor de regras e renderer
 ```
 
-The profile loads `data/cyber-item-rules.psd1`, then resolves each item in this
-order:
+O profile carrega `data/cyber-item-rules.psd1` e resolve cada item nesta ordem:
 
-1. Link fallback.
-2. Directory regex rules.
-3. File-name regex rules.
-4. Extension maps.
-5. Default folder/file fallback.
+1. Fallback para links.
+2. Regras regex para diretórios.
+3. Regras regex para nomes de arquivos.
+4. Mapas por extensão.
+5. Fallback padrão para pasta ou arquivo.
 
-This keeps contributions simple: most new icon requests only touch the data
-file, not the PowerShell renderer.
+Isso facilita contribuições: a maioria dos pedidos de novos ícones muda apenas o
+arquivo de dados, não o renderer em PowerShell.
 
-## Customize Icons And Colors
+## Personalizar Ícones E Cores
 
-Edit:
+Edite:
 
 ```text
 data\cyber-item-rules.psd1
 ```
 
-Example:
+Exemplo:
 
 ```powershell
 ExtensionIcons = @{
@@ -186,54 +187,56 @@ ExtensionColors = @{
 }
 ```
 
-Main sections:
+Seções principais:
 
-- `DirectoryIconRules`: regex rules for folder icons.
-- `FileIconRules`: regex rules for file-name icons.
-- `ExtensionIcons`: extension-to-icon map.
-- `DirectoryColorRules`: regex rules for folder colors.
-- `FileColorRules`: regex rules for file-name colors.
-- `ExtensionColors`: extension-to-color map.
+- `DirectoryIconRules`: regras regex para ícones de pastas.
+- `FileIconRules`: regras regex para ícones por nome de arquivo.
+- `ExtensionIcons`: mapa de extensão para ícone.
+- `DirectoryColorRules`: regras regex para cores de pastas.
+- `FileColorRules`: regras regex para cores por nome de arquivo.
+- `ExtensionColors`: mapa de extensão para cor.
 
-Keep the file saved as UTF-8 because Nerd Font glyphs are stored directly in it.
+Mantenha o arquivo em UTF-8, porque os glyphs Nerd Font ficam gravados direto no
+arquivo.
 
-## Windows Terminal Setup
+## Configuração Do Windows Terminal
 
-Manual setup reference:
+Referência manual:
 
 ```text
 terminal\windows-terminal-snippet.json
 ```
 
-The snippet contains:
+O snippet contém:
 
-- `dev` profile.
-- `Cyberpunk2026` color scheme.
-- FiraCode Nerd Font Mono configuration.
-- Acrylic opacity and tab styling.
+- Perfil `dev`.
+- Esquema de cores `Cyberpunk2026`.
+- Fonte `FiraCode Nerd Font Mono`.
+- Acrylic, opacidade e estilo da aba.
 
-Automatic setup is available with:
+Setup automático:
 
 ```powershell
 .\scripts\merge-windows-terminal.ps1
 ```
 
-## Test Without Installing
+## Testar Sem Instalar
 
 ```powershell
 pwsh -NoLogo -NoProfile -File .\scripts\test-profile.ps1
 ```
 
-This loads the repo profile directly, creates a temporary folder with sample
-files, renders the custom listing, and removes the temporary folder.
+Esse teste carrega o profile direto do repositório, cria uma pasta temporária
+com arquivos de exemplo, renderiza a listagem customizada e remove a pasta.
 
-## Project Layout
+## Estrutura Do Projeto
 
 ```text
 cyberpunk-pwsh-terminal/
 ├─ data/
 │  └─ cyber-item-rules.psd1
 ├─ docs/
+│  ├─ en/
 │  ├─ ARCHITECTURE.md
 │  ├─ CYBERPUNK_TERMINAL_SETUP.md
 │  ├─ INSTALL.md
@@ -252,51 +255,51 @@ cyberpunk-pwsh-terminal/
 └─ uninstall.ps1
 ```
 
-## Troubleshooting
+## Solução De Problemas
 
-If icons render as boxes, install/select `FiraCode Nerd Font Mono` in Windows
-Terminal and VS Code.
+Se os ícones aparecerem como quadrados, instale/selecione `FiraCode Nerd Font
+Mono` no Windows Terminal e no VS Code.
 
-If the prompt is not styled, verify `oh-my-posh` is installed:
+Se o prompt não estiver estilizado, verifique se `oh-my-posh` está instalado:
 
 ```powershell
 oh-my-posh --version
 ```
 
-If `ls` works but icon colors are not what you expect, edit:
+Se `ls` funciona, mas as cores/ícones não estão como você quer, edite:
 
 ```text
 data\cyber-item-rules.psd1
 ```
 
-More fixes live in [docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md).
+Mais correções estão em [docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md).
 
-## Documentation
+## Documentação
 
-- [Install notes](docs/INSTALL.md)
-- [Architecture](docs/ARCHITECTURE.md)
+- [Instalação](docs/INSTALL.md)
+- [Arquitetura](docs/ARCHITECTURE.md)
 - [Screenshots](docs/SCREENSHOTS.md)
-- [Troubleshooting](docs/TROUBLESHOOTING.md)
-- [Terminal setup notes](docs/CYBERPUNK_TERMINAL_SETUP.md)
-- [Contributing](CONTRIBUTING.md)
+- [Solução de problemas](docs/TROUBLESHOOTING.md)
+- [Notas do setup do terminal](docs/CYBERPUNK_TERMINAL_SETUP.md)
+- [Como contribuir](CONTRIBUTING.md)
 - [Changelog](CHANGELOG.md)
+- [English README](README.en.md)
 
 ## Roadmap
 
-- Add real PNG screenshots from Windows Terminal.
-- Add more preset themes: minimal, heavy neon, and high-contrast.
-- Add Pester tests for icon/color rule resolution.
-- Add a rule gallery generated from `data/cyber-item-rules.psd1`.
-- Add a safe update command for already-installed profiles.
+- Adicionar screenshots PNG reais do Windows Terminal.
+- Adicionar temas extras: minimal, heavy neon e high-contrast.
+- Adicionar testes Pester para resolução de ícones e cores.
+- Gerar uma galeria de regras a partir de `data/cyber-item-rules.psd1`.
+- Criar comando seguro para atualizar instalações existentes.
 
-## Notes
+## Notas
 
-- This project intentionally does not depend on Terminal-Icons for `ls`.
-- The renderer is self-contained to avoid module cache problems.
-- The terminal can only infer icons from file/folder names and extensions, so
-  the goal is broad practical coverage, not a perfect mapping of every Nerd Font
-  glyph.
+- Este projeto não depende de Terminal-Icons para renderizar `ls`.
+- O renderer é autocontido para evitar problemas de cache de módulo.
+- O terminal só consegue inferir ícones pelo nome/extensão de arquivos e pastas;
+  o objetivo é cobertura prática, não mapear perfeitamente todos os glyphs Nerd Font.
 
-## License
+## Licença
 
 MIT

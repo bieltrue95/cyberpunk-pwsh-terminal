@@ -1,20 +1,22 @@
 ﻿# Screenshots
 
-The repository includes SVG previews so GitHub renders the visual identity even
-before real PNG screenshots are captured.
+Idioma: Português do Brasil | [English](en/SCREENSHOTS.md)
 
-## Current Preview Assets
+O repositório inclui prévias em SVG para que o GitHub mostre a identidade visual
+mesmo antes de existirem capturas PNG reais.
 
-| File | Purpose |
+## Assets Atuais
+
+| Arquivo | Finalidade |
 | --- | --- |
-| `screenshots/terminal-showcase.svg` | Main terminal renderer preview. |
-| `screenshots/history-search.svg` | PSReadLine history/search preview. |
-| `screenshots/data-driven-rules.svg` | Architecture preview for data-driven rules. |
-| `screenshots/safe-install-flow.svg` | Installer and validation flow preview. |
+| `screenshots/terminal-showcase.svg` | Prévia principal do renderer do terminal. |
+| `screenshots/history-search.svg` | Prévia do histórico e busca do PSReadLine. |
+| `screenshots/data-driven-rules.svg` | Prévia da arquitetura data-driven. |
+| `screenshots/safe-install-flow.svg` | Prévia do fluxo de instalação e validação. |
 
-## Adding Real Screenshots
+## Adicionar Screenshots Reais
 
-Recommended PNG names:
+Nomes PNG recomendados:
 
 ```text
 screenshots/terminal-real.png
@@ -22,13 +24,13 @@ screenshots/history-real.png
 screenshots/install-real.png
 ```
 
-Suggested capture checklist:
+Checklist sugerido:
 
-- Use Windows Terminal profile `dev`.
-- Use `FiraCode Nerd Font Mono`.
-- Run `ll ~` or `pwsh -NoLogo -NoProfile -File .\scripts\test-profile.ps1`.
-- Capture at 1280x720 or 1600x900.
-- Avoid showing secrets, tokens, private paths, or personal command history.
+- Usar o perfil `dev` do Windows Terminal.
+- Usar `FiraCode Nerd Font Mono`.
+- Rodar `ll ~` ou `pwsh -NoLogo -NoProfile -File .\scripts\test-profile.ps1`.
+- Capturar em 1280x720 ou 1600x900.
+- Evitar mostrar segredos, tokens, caminhos privados ou histórico pessoal.
 
-After adding PNGs, update `README.md` to show the real captures above or beside
-the SVG previews.
+Depois de adicionar PNGs, atualize `README.md` para exibir as capturas reais
+acima ou ao lado das prévias SVG.

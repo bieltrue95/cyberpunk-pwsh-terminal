@@ -1,9 +1,11 @@
-﻿# Architecture
+﻿# Arquitetura
 
-This project is split into small pieces so the visual style can evolve without
-turning the PowerShell profile into an unmaintainable blob.
+Idioma: Português do Brasil | [English](en/ARCHITECTURE.md)
 
-## Main Parts
+O projeto é dividido em partes pequenas para permitir evolução visual sem
+transformar o profile do PowerShell em um bloco difícil de manter.
+
+## Partes Principais
 
 ```text
 data\cyber-item-rules.psd1
@@ -14,55 +16,56 @@ terminal\windows-terminal-snippet.json
 themes\cyberpunk-clean.omp.json
 ```
 
-## Profile Boot Flow
+## Fluxo De Inicialização Do Profile
 
-1. Configure PSReadLine history and keybindings.
-2. Load icon/color rules from `data\cyber-item-rules.psd1`.
-3. Register `ls`, `dir`, `l`, and `ll` as visual renderers.
-4. Register helper commands like `hist`, `hfind`, and `ccurl`.
-5. Initialize oh-my-posh when available.
+1. Configura histórico e atalhos do PSReadLine.
+2. Carrega regras de ícones e cores de `data\cyber-item-rules.psd1`.
+3. Registra `ls`, `dir`, `l` e `ll` como renderers visuais.
+4. Registra helpers como `hist`, `hfind` e `ccurl`.
+5. Inicializa oh-my-posh quando disponível.
 
-## Rule Resolution
+## Resolução De Regras
 
-For every file system item, the renderer resolves icon and color in this order:
+Para cada item do sistema de arquivos, o renderer resolve ícone e cor nesta
+ordem:
 
-1. Link fallback.
-2. Directory regex rules.
-3. File-name regex rules.
-4. Extension maps.
-5. Default folder/file fallback.
+1. Fallback para links.
+2. Regras regex para diretórios.
+3. Regras regex para nomes de arquivos.
+4. Mapas por extensão.
+5. Fallback padrão para pasta/arquivo.
 
-This makes common cases fast and keeps new contributions data-only.
+Isso mantém casos comuns rápidos e facilita contribuições apenas em dados.
 
-## Why Not Terminal-Icons?
+## Por Que Não Usar Terminal-Icons?
 
-Terminal-Icons is a good module, but this setup intentionally avoids taking a
-runtime dependency on it. The original environment hit module cache instability,
-so the renderer became self-contained for predictable startup and easier GitHub
-sharing.
+Terminal-Icons é um bom módulo, mas este setup evita depender dele em tempo de
+execução. O ambiente original teve instabilidade com cache do módulo, então o
+renderer virou autocontido para ter startup previsível e facilitar distribuição
+no GitHub.
 
-## Why Use Write-Host?
+## Por Que Usar Write-Host?
 
-The custom `ls` is intentionally a visual command. It paints columns and names
-with ANSI RGB sequences, so it is optimized for humans looking at a terminal.
+O `ls` customizado é propositalmente um comando visual. Ele pinta colunas e nomes
+com sequências ANSI RGB, então é otimizado para leitura humana no terminal.
 
-For pipeline-heavy scripting, use native commands directly:
+Para scripts e pipeline, use comandos nativos:
 
 ```powershell
 Get-ChildItem | Where-Object Extension -eq '.ps1'
 ```
 
-## Installer Safety
+## Segurança Do Instalador
 
-The installer copies files into the current user's PowerShell profile directory.
-It backs up an existing profile before replacing it.
+O instalador copia arquivos para o diretório de profile do usuário atual e cria
+backup do profile existente antes de substituir.
 
-Windows Terminal settings are not modified by default. The merge script is
-opt-in and performs these steps:
+As configurações do Windows Terminal não são alteradas por padrão. O script de
+merge é opcional e faz:
 
-1. Read existing `settings.json`.
-2. Read `terminal\windows-terminal-snippet.json`.
-3. Replace or append only the `dev` profile and `Cyberpunk2026` scheme.
-4. Validate JSON.
-5. Create a timestamped backup.
-6. Write the merged file.
+1. Lê o `settings.json` existente.
+2. Lê `terminal\windows-terminal-snippet.json`.
+3. Substitui ou adiciona apenas o perfil `dev` e o esquema `Cyberpunk2026`.
+4. Valida o JSON.
+5. Cria backup com timestamp.
+6. Escreve o arquivo mesclado.

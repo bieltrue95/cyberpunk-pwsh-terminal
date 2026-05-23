@@ -1,21 +1,23 @@
-﻿# Install Notes
+﻿# Instalação
 
-The installer copies the portable profile into the current user's PowerShell
-profile path and places the oh-my-posh theme plus rule data beside it.
+Idioma: Português do Brasil | [English](en/INSTALL.md)
 
-## Prerequisites
+O instalador copia o profile portátil para o caminho de profile do usuário atual
+e coloca o tema do oh-my-posh e os dados de regras ao lado dele.
 
-Before installing, make sure the machine has:
+## Pré-Requisitos
 
-| Tool | Check command | Notes |
+Antes de instalar, confirme que a máquina tem:
+
+| Ferramenta | Comando de verificação | Observações |
 | --- | --- | --- |
-| PowerShell 7 | `pwsh --version` | Required. Do not use Windows PowerShell 5.1 for this setup. |
-| Git | `git --version` | Required when installing from a cloned repository. |
-| Windows Terminal | `wt --version` | Recommended for the full visual experience. |
-| FiraCode Nerd Font Mono | Check Windows Terminal font list | Required for icons/glyphs to render correctly. |
-| oh-my-posh | `oh-my-posh --version` | Recommended for the styled prompt. |
+| PowerShell 7 | `pwsh --version` | Obrigatório. Não use Windows PowerShell 5.1 para este setup. |
+| Git | `git --version` | Necessário para instalar a partir de um repositório clonado. |
+| Windows Terminal | `wt --version` | Recomendado para a experiência visual completa. |
+| FiraCode Nerd Font Mono | Verificar lista de fontes do Windows Terminal | Necessário para ícones/glyphs renderizarem corretamente. |
+| oh-my-posh | `oh-my-posh --version` | Recomendado para o prompt estilizado. |
 
-Common install commands:
+Comandos comuns de instalação:
 
 ```powershell
 winget install Microsoft.PowerShell
@@ -24,51 +26,51 @@ winget install Microsoft.WindowsTerminal
 winget install JanDeDobbeleer.OhMyPosh -s winget
 ```
 
-`FiraCode Nerd Font Mono` should be installed from Nerd Fonts and then selected
-in Windows Terminal. Without a Nerd Font, icons usually render as empty boxes or
-question marks.
+A fonte `FiraCode Nerd Font Mono` deve ser instalada a partir do Nerd Fonts e
+selecionada no Windows Terminal. Sem Nerd Font, os ícones geralmente aparecem
+como quadrados vazios ou pontos de interrogação.
 
-Run diagnostics before installing:
+Rode o diagnóstico antes de instalar:
 
 ```powershell
 pwsh -NoLogo -NoProfile -File .\scripts\check.ps1
 ```
 
-## Default Install
+## Instalação Padrão
 
 ```powershell
 .\install.ps1
 ```
 
-What it does:
+O que o instalador faz:
 
-- Backs up the existing `$PROFILE` when one exists.
-- Copies `profile\Microsoft.PowerShell_profile.ps1` to `$PROFILE`.
-- Copies `themes\cyberpunk-clean.omp.json` to `<profile-dir>\themes`.
-- Copies `data\cyber-item-rules.psd1` to `<profile-dir>\data`.
+- Cria backup do `$PROFILE` existente, quando houver.
+- Copia `profile\Microsoft.PowerShell_profile.ps1` para `$PROFILE`.
+- Copia `themes\cyberpunk-clean.omp.json` para `<profile-dir>\themes`.
+- Copia `data\cyber-item-rules.psd1` para `<profile-dir>\data`.
 
-## Optional Flags
+## Flags Opcionais
 
-Install oh-my-posh through winget when missing:
+Instalar oh-my-posh via winget quando estiver ausente:
 
 ```powershell
 .\install.ps1 -InstallOhMyPosh
 ```
 
-Merge the Windows Terminal profile and color scheme automatically:
+Mesclar automaticamente o perfil e esquema de cores no Windows Terminal:
 
 ```powershell
 .\install.ps1 -ConfigureWindowsTerminal
 ```
 
-Use a custom Windows Terminal settings path:
+Usar caminho customizado para `settings.json` do Windows Terminal:
 
 ```powershell
 .\install.ps1 -ConfigureWindowsTerminal -TerminalSettingsPath "C:\path\to\settings.json"
 ```
 
-## Safety
+## Segurança
 
-The installer does not edit Windows Terminal by default. If you opt into
-`-ConfigureWindowsTerminal`, it creates a timestamped backup first and validates
-JSON before writing.
+O instalador não altera o Windows Terminal por padrão. Se você optar por
+`-ConfigureWindowsTerminal`, ele cria backup com timestamp antes e valida o JSON
+antes de escrever.
