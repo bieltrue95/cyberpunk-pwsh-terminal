@@ -16,3 +16,5 @@ All notable changes to this project will be documented in this file.
 - Optional Windows Terminal merge script with backup and JSON validation.
 - Diagnostics script and CI-friendly profile test.
 - Contribution guide and MIT license.
+- Screenshot gallery using committed SVG previews.
+- Architecture, screenshots, and troubleshooting documentation.
