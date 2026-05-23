@@ -14,9 +14,10 @@
     <text x="402" y="284" fill="#f2f6ff">backup profile</text>
     <text x="402" y="316" fill="#f2f6ff">copy theme/data</text>
     <rect x="660" y="190" width="260" height="150" rx="18" fill="#101827" stroke="#ff4dff" stroke-width="2"/>
-    <text x="692" y="242" fill="#ff4dff" font-weight="700">optional terminal merge</text>
-    <text x="692" y="284" fill="#f2f6ff">backup settings</text>
-    <text x="692" y="316" fill="#f2f6ff">validate JSON</text>
+    <text x="692" y="232" fill="#ff4dff" font-size="18" font-weight="700">optional terminal</text>
+    <text x="692" y="260" fill="#ff4dff" font-size="18" font-weight="700">merge</text>
+    <text x="692" y="298" fill="#f2f6ff">backup settings</text>
+    <text x="692" y="326" fill="#f2f6ff">validate JSON</text>
     <rect x="980" y="190" width="220" height="150" rx="18" fill="#101827" stroke="#67ff9a" stroke-width="2"/>
     <text x="1012" y="242" fill="#67ff9a" font-weight="700">test-profile</text>
     <text x="1012" y="284" fill="#f2f6ff">smoke test</text>
