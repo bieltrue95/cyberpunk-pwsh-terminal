@@ -7,23 +7,23 @@
     <text x="80" y="80" fill="#f2f6ff" font-size="36" font-weight="800">Data-driven icon engine</text>
     <text x="80" y="122" fill="#b9c7e6" font-size="21">Contributors edit rules. The renderer stays stable.</text>
   </g>
-  <g font-family="Cascadia Mono, Fira Code, Consolas, monospace" font-size="20">
-    <rect x="80" y="180" width="300" height="210" rx="20" fill="#101827" stroke="#63f3ff" stroke-width="2"/>
-    <text x="110" y="226" fill="#63f3ff" font-weight="700">data/cyber-item-rules.psd1</text>
-    <text x="110" y="270" fill="#ffd166">ExtensionIcons['.ps1']</text>
-    <text x="110" y="306" fill="#67ff9a">DirectoryColorRules</text>
-    <text x="110" y="342" fill="#ff4dff">FileIconRules</text>
-    <text x="110" y="378" fill="#55a8ff">Defaults</text>
-    <path d="M390 285 L510 285" stroke="#63f3ff" stroke-width="5" marker-end="url(#arrow)" filter="url(#glow)"/>
-    <rect x="520" y="180" width="300" height="210" rx="20" fill="#101827" stroke="#d600ff" stroke-width="2"/>
-    <text x="550" y="226" fill="#ff4dff" font-weight="700">profile engine</text>
-    <text x="550" y="270" fill="#f2f6ff">Import-CyberItemRules</text>
-    <text x="550" y="306" fill="#f2f6ff">Get-CyberItemIcon</text>
-    <text x="550" y="342" fill="#f2f6ff">Get-CyberItemColor</text>
-    <text x="550" y="378" fill="#f2f6ff">Show-CyberChildItem</text>
-    <path d="M830 285 L950 285" stroke="#d600ff" stroke-width="5" marker-end="url(#arrow2)" filter="url(#glow)"/>
-    <rect x="960" y="180" width="240" height="210" rx="20" fill="#101827" stroke="#67ff9a" stroke-width="2"/>
-    <text x="990" y="226" fill="#67ff9a" font-weight="700">terminal output</text>
+  <g font-family="Cascadia Mono, Fira Code, Consolas, monospace" font-size="18">
+    <rect x="72" y="174" width="328" height="230" rx="20" fill="#101827" stroke="#63f3ff" stroke-width="2"/>
+    <text x="104" y="220" fill="#63f3ff" font-weight="700">data/</text>
+    <text x="104" y="250" fill="#63f3ff" font-weight="700">cyber-item-rules.psd1</text>
+    <text x="104" y="294" fill="#ffd166">ExtensionIcons['.ps1']</text>
+    <text x="104" y="330" fill="#67ff9a">DirectoryColorRules</text>
+    <text x="104" y="366" fill="#ff4dff">FileIconRules</text>
+    <path d="M412 289 L500 289" stroke="#63f3ff" stroke-width="5" marker-end="url(#arrow)" filter="url(#glow)"/>
+    <rect x="520" y="174" width="328" height="230" rx="20" fill="#101827" stroke="#d600ff" stroke-width="2"/>
+    <text x="552" y="220" fill="#ff4dff" font-weight="700">profile engine</text>
+    <text x="552" y="270" fill="#f2f6ff">Import-CyberItemRules</text>
+    <text x="552" y="306" fill="#f2f6ff">Get-CyberItemIcon</text>
+    <text x="552" y="342" fill="#f2f6ff">Get-CyberItemColor</text>
+    <text x="552" y="378" fill="#f2f6ff">Show-CyberChildItem</text>
+    <path d="M860 289 L940 289" stroke="#d600ff" stroke-width="5" marker-end="url(#arrow2)" filter="url(#glow)"/>
+    <rect x="960" y="174" width="248" height="230" rx="20" fill="#101827" stroke="#67ff9a" stroke-width="2"/>
+    <text x="990" y="220" fill="#67ff9a" font-weight="700">terminal output</text>
     <text x="990" y="270" fill="#63f3ff">colored columns</text>
     <text x="990" y="306" fill="#ffd166">length neon</text>
     <text x="990" y="342" fill="#ff4d6d">file families</text>
