@@ -94,6 +94,29 @@ a aprovação realmente obrigatória, configure no GitHub:
 Repita uma regra equivalente para `develop`, também exigindo PR e CI verde.
 Com isso, o merge para `main` e `develop` depende do processo de revisão.
 
+## Aplicar Proteção Por Script
+
+Se preferir aplicar via API em vez da interface do GitHub, use:
+
+```powershell
+$env:GITHUB_TOKEN = '<token-com-administration-write>'
+pwsh -NoLogo -NoProfile -File .\scripts\configure-branch-protection.ps1
+```
+
+O token precisa ter permissão de administração do repositório. Em fine-grained
+tokens, habilite `Administration: Read and write` para este repositório.
+
+O script aplica em `main` e `develop`:
+
+- PR obrigatório antes de merge.
+- 1 aprovação obrigatória.
+- aprovação de CODEOWNERS obrigatória.
+- status check obrigatório: `validate`.
+- reviews antigas descartadas após novos pushes.
+- admins também seguem a proteção (`enforce_admins`).
+- force push e deleção de branch bloqueados.
+- resolução de conversas obrigatória.
+
 ## Política De Merge
 
 - Preferir `Squash and merge` para histórico limpo.
