@@ -18,17 +18,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Prepare Pester
-        shell: pwsh
-        run: |
-          $ErrorActionPreference = 'Stop'
-          Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force -Scope CurrentUser
-          if (-not (Get-PSRepository -Name PSGallery -ErrorAction SilentlyContinue)) {
-            Register-PSRepository -Default
-          }
-          Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
-          Install-Module Pester -MinimumVersion 5.7.1 -Repository PSGallery -Scope CurrentUser -Force -SkipPublisherCheck -AcceptLicense
-
       - name: Diagnostics
         shell: pwsh
         run: .\scripts\check.ps1
