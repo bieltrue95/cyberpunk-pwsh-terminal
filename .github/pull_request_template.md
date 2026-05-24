@@ -2,6 +2,11 @@
 
 Describe what changed and why.
 
+## Branch Flow
+
+- [ ] Target branch is correct (`develop` for features/fixes, `main` for releases/hotfixes).
+- [ ] Branch name follows GitFlow (`feature/*`, `fix/*`, `bugfix/*`, `hotfix/*`, `release/*`, `chore/*`, or `docs/*`).
+
 ## Validation
 
 - [ ] I ran local checks (`scripts/check.ps1`, `scripts/test-profile.ps1`, `scripts/test-unit.ps1`, `scripts/test-e2e-reinstall.ps1`, `scripts/legal-check.ps1`).

@@ -21,6 +21,11 @@ pwsh -NoLogo -NoProfile -File .\scripts\legal-check.ps1
 ## Branch Flow And PR Approval
 
 - Do not push directly to `main`.
+- Use `develop` as the integration branch.
+- Create features in `feature/<short-name>`.
+- Create regular fixes in `fix/<short-name>` or `bugfix/<short-name>`.
+- Create urgent production fixes in `hotfix/<short-name>` from `main`.
+- Prepare releases in `release/<version>` from `develop`.
 - All changes must go through pull requests.
 - Merge only with green CI.
 - Merge requires maintainer approval (CODEOWNERS + branch protection).

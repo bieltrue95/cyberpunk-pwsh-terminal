@@ -2,7 +2,21 @@
 
 on:
   push:
+    branches:
+      - main
+      - develop
+      - 'feature/**'
+      - 'fix/**'
+      - 'bugfix/**'
+      - 'hotfix/**'
+      - 'release/**'
+      - 'chore/**'
+      - 'docs/**'
   pull_request:
+    branches:
+      - main
+      - develop
+  workflow_dispatch:
 
 jobs:
   validate:

@@ -9,25 +9,73 @@ pequeno e com qualidade protegida por CI no GitHub Actions.
 - Garantir rastreabilidade de mudanças.
 - Exigir aprovação explícita do mantenedor antes de merge.
 
-## Modelo De Branches
+## Modelo De Branches Ativo
 
 - `main`: produção estável, sempre pronta para uso.
-- `develop` (opcional): integração contínua de features antes de release.
+- `develop`: integração contínua de features antes de release.
 - `feature/<nome-curto>`: novas funcionalidades.
 - `fix/<nome-curto>`: correções não críticas.
+- `bugfix/<nome-curto>`: alias aceito para correções não críticas.
 - `hotfix/<nome-curto>`: correções urgentes para produção.
 - `release/<versao>`: preparação de release (changelog, docs, ajustes finais).
+- `chore/<nome-curto>`: manutenção sem mudança funcional.
+- `docs/<nome-curto>`: documentação.
 
-Se o projeto operar sem `develop`, use fluxo curto:
-`feature/* -> PR -> main` (sempre com CI verde e aprovação).
+Fluxo padrão:
+
+```text
+feature/* -> PR -> develop -> release/* -> PR -> main
+fix/*     -> PR -> develop
+hotfix/*  -> PR -> main -> backport/merge para develop
+```
+
+`main` representa o que uma pessoa pode instalar com confiança. `develop`
+representa a próxima versão em integração.
+
+## Comandos Práticos
+
+Criar uma feature:
+
+```powershell
+git switch develop
+git pull origin develop
+git switch -c feature/nome-curto
+```
+
+Criar uma correção comum:
+
+```powershell
+git switch develop
+git pull origin develop
+git switch -c fix/nome-curto
+```
+
+Criar um hotfix de produção:
+
+```powershell
+git switch main
+git pull origin main
+git switch -c hotfix/nome-curto
+```
+
+Preparar release:
+
+```powershell
+git switch develop
+git pull origin develop
+git switch -c release/vX.Y.Z
+```
 
 ## Regras De Pull Request
 
 - Nunca fazer push direto em `main`.
+- Evitar push direto em `develop`; use PR sempre que possível.
 - Todo merge deve acontecer por PR.
 - PR deve ser pequeno e focado (um objetivo claro).
 - PR deve descrever risco, impacto e validação local.
 - PR só pode ser mergeado com CI verde.
+- Features e fixes entram primeiro em `develop`.
+- Releases e hotfixes entram em `main` com aprovação do mantenedor.
 
 ## Aprovação Obrigatória Do Mantenedor
 
@@ -43,7 +91,8 @@ a aprovação realmente obrigatória, configure no GitHub:
 7. Opcional e recomendado: `Require branches to be up to date before merging`
 8. Opcional e recomendado: `Do not allow bypassing the above settings`
 
-Com isso, o merge depende da aprovação do mantenedor dono do código.
+Repita uma regra equivalente para `develop`, também exigindo PR e CI verde.
+Com isso, o merge para `main` e `develop` depende do processo de revisão.
 
 ## Política De Merge
 
@@ -72,8 +121,22 @@ Hoje o pipeline está em `.github/workflows/ci.yml` com job `validate` em
 - E2E de reinstalação (`scripts/test-e2e-reinstall.ps1`)
 - checagem legal (`scripts/legal-check.ps1`)
 
+O workflow roda em push para:
+
+- `main`
+- `develop`
+- `feature/**`
+- `fix/**`
+- `bugfix/**`
+- `hotfix/**`
+- `release/**`
+- `chore/**`
+- `docs/**`
+
+O workflow também roda em PRs direcionados para `main` e `develop`, além de
+permitir execução manual via `workflow_dispatch`.
+
 Status: **CI está consistente com o processo de qualidade**.
 
 Observação: **CD de release/publicação automática não está configurado**. Se
 quiser CD, o próximo passo é criar workflow de release com tag/versionamento.
-

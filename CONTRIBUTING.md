@@ -21,6 +21,11 @@ pwsh -NoLogo -NoProfile -File .\scripts\legal-check.ps1
 ## Fluxo De Branch E Aprovação De PR
 
 - Não fazer push direto em `main`.
+- Use `develop` como branch de integração.
+- Crie features em `feature/<nome-curto>`.
+- Crie correções comuns em `fix/<nome-curto>` ou `bugfix/<nome-curto>`.
+- Crie correções urgentes em `hotfix/<nome-curto>` a partir de `main`.
+- Prepare releases em `release/<versao>` a partir de `develop`.
 - Toda mudança deve entrar por PR.
 - Merge só com CI verde.
 - Merge depende de aprovação do mantenedor (CODEOWNERS + proteção de branch).
