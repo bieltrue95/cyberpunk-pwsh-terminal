@@ -2,7 +2,8 @@
 param(
     [switch]$Force,
     [switch]$RemoveTheme,
-    [switch]$RemoveData
+    [switch]$RemoveData,
+    [string]$TargetProfilePath
 )
 
 $ErrorActionPreference = 'Stop'
@@ -12,7 +13,7 @@ function Write-Step {
     Write-Host "==> $Message" -ForegroundColor Cyan
 }
 
-$targetProfile = $PROFILE.CurrentUserCurrentHost
+$targetProfile = if ($TargetProfilePath) { $TargetProfilePath } else { $PROFILE.CurrentUserCurrentHost }
 if (-not $targetProfile) { $targetProfile = [string]$PROFILE }
 $targetProfileDir = Split-Path -Parent $targetProfile
 $targetTheme = Join-Path $targetProfileDir 'themes\cyberpunk-clean.omp.json'

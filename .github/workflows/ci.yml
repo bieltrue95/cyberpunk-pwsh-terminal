@@ -23,6 +23,10 @@ jobs:
         shell: pwsh
         run: .\scripts\test-unit.ps1
 
+      - name: E2E reinstall cycle
+        shell: pwsh
+        run: .\scripts\test-e2e-reinstall.ps1
+
       - name: Legal compliance checks
         shell: pwsh
         run: .\scripts\legal-check.ps1

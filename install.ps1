@@ -3,7 +3,8 @@ param(
     [switch]$SkipBackup,
     [switch]$InstallOhMyPosh,
     [switch]$ConfigureWindowsTerminal,
-    [string]$TerminalSettingsPath
+    [string]$TerminalSettingsPath,
+    [string]$TargetProfilePath
 )
 
 $ErrorActionPreference = 'Stop'
@@ -46,7 +47,7 @@ if (-not (Test-Path -LiteralPath $sourceProfile)) { throw "Profile source not fo
 if (-not (Test-Path -LiteralPath $sourceTheme)) { throw "Theme source not found: $sourceTheme" }
 if (-not (Test-Path -LiteralPath $sourceDataDir)) { throw "Data directory not found: $sourceDataDir" }
 
-$targetProfile = $PROFILE.CurrentUserCurrentHost
+$targetProfile = if ($TargetProfilePath) { $TargetProfilePath } else { $PROFILE.CurrentUserCurrentHost }
 if (-not $targetProfile) { $targetProfile = [string]$PROFILE }
 $targetProfileDir = Split-Path -Parent $targetProfile
 $targetThemeDir = Join-Path $targetProfileDir 'themes'
@@ -100,7 +101,7 @@ if ($PSCmdlet.ShouldProcess($targetTheme, 'Copy oh-my-posh theme')) {
 }
 
 if ($PSCmdlet.ShouldProcess($targetDataDir, 'Copy icon/color rule data')) {
-    Copy-Item -LiteralPath (Join-Path $sourceDataDir '*') -Destination $targetDataDir -Recurse -Force
+    Copy-Item -Path (Join-Path $sourceDataDir '*') -Destination $targetDataDir -Recurse -Force
 }
 
 if ($ConfigureWindowsTerminal) {
