@@ -37,6 +37,7 @@ git clone https://github.com/bieltrue95/cyberpunk-pwsh-terminal.git
 ```
 
 Beginner guide: [docs/en/GETTING_STARTED.md](docs/en/GETTING_STARTED.md).
+Want to contribute? See [ROADMAP.en.md](ROADMAP.en.md).
 
 ## If Something Breaks
 

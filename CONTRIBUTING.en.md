@@ -6,6 +6,8 @@ Thanks for helping improve this terminal setup. The project is intentionally
 simple: most visual contributions should happen in data files, not in renderer
 logic.
 
+If you are still choosing a task, start with `ROADMAP.en.md`.
+
 ## Local Validation
 
 Run these before opening a pull request:

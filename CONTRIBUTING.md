@@ -6,6 +6,8 @@ Obrigado por ajudar a melhorar este setup de terminal. A ideia do projeto é ser
 simples: a maioria das contribuições visuais deve acontecer em arquivos de
 dados, não na lógica do renderer.
 
+Se você ainda está escolhendo uma tarefa, comece pelo `ROADMAP.md`.
+
 ## Validação Local
 
 Rode antes de abrir um pull request:
