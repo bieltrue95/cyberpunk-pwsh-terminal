@@ -5,7 +5,14 @@ $testsPath = Join-Path $repoRoot 'tests'
 
 $pesterV5 = Get-Module -ListAvailable -Name Pester | Where-Object { $_.Version -ge [version]'5.0.0' } | Select-Object -First 1
 if (-not $pesterV5) {
-    Install-Module Pester -Scope CurrentUser -Force -SkipPublisherCheck
+    if (Get-Command Install-PackageProvider -ErrorAction SilentlyContinue) {
+        Install-PackageProvider -Name NuGet -Force -ForceBootstrap -Scope CurrentUser | Out-Null
+    }
+    if (-not (Get-PSRepository -Name PSGallery -ErrorAction SilentlyContinue)) {
+        Register-PSRepository -Default
+    }
+    Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
+    Install-Module Pester -MinimumVersion 5.7.1 -Repository PSGallery -Scope CurrentUser -Force -SkipPublisherCheck
 }
 
 Import-Module Pester -MinimumVersion 5.0.0 -Force -ErrorAction Stop
