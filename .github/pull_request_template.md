@@ -4,8 +4,9 @@ Describe what changed and why.
 
 ## Validation
 
-- [ ] I ran local checks (`scripts/check.ps1`, `scripts/test-profile.ps1`).
+- [ ] I ran local checks (`scripts/check.ps1`, `scripts/test-profile.ps1`, `scripts/test-unit.ps1`, `scripts/test-e2e-reinstall.ps1`, `scripts/legal-check.ps1`).
 - [ ] I reviewed the diff for accidental secrets/private data.
+- [ ] This PR requires maintainer approval before merge (CODEOWNERS + branch protection).
 
 ## Legal/Compliance Checklist (Required)
 

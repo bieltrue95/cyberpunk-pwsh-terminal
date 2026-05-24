@@ -12,6 +12,7 @@ This file tracks provenance and license status for visual and media assets commi
 | `screenshots/safe-install-flow.svg` | SVG | Created for this repository by maintainers | MIT (repository license) | Original repository-owned diagram/illustration |
 | `screenshots/beginner-quick-start.svg` | SVG | Created for this repository by maintainers | MIT (repository license) | Original repository-owned diagram/illustration |
 | `screenshots/emergency-restore.svg` | SVG | Created for this repository by maintainers | MIT (repository license) | Original repository-owned diagram/illustration |
+| `screenshots/install-mindmap-sketch.svg` | SVG | Created for this repository by maintainers | MIT (repository license) | Original repository-owned diagram/illustration |
 
 ## Policy
 

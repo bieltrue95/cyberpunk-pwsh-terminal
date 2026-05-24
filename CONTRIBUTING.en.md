@@ -13,7 +13,19 @@ Run these before opening a pull request:
 ```powershell
 pwsh -NoLogo -NoProfile -File .\scripts\check.ps1
 pwsh -NoLogo -NoProfile -File .\scripts\test-profile.ps1
+pwsh -NoLogo -NoProfile -File .\scripts\test-unit.ps1
+pwsh -NoLogo -NoProfile -File .\scripts\test-e2e-reinstall.ps1
+pwsh -NoLogo -NoProfile -File .\scripts\legal-check.ps1
 ```
+
+## Branch Flow And PR Approval
+
+- Do not push directly to `main`.
+- All changes must go through pull requests.
+- Merge only with green CI.
+- Merge requires maintainer approval (CODEOWNERS + branch protection).
+
+Full guide: `docs/GITFLOW_PR_APPROVAL.md`.
 
 ## Adding Icons
 

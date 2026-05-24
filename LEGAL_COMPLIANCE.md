@@ -15,6 +15,12 @@ Contributors must not submit:
 - Confidential material, private data, credentials, tokens, or private keys.
 - Third-party assets without clear source/license information.
 
+Special rule for runtime dependencies and fonts:
+
+- Do not commit third-party binaries (for example, font files or executable packages)
+  unless redistribution rights are confirmed and documented.
+- Declaring a dependency (install instructions or links) is preferred over bundling.
+
 ## Legal Notice
 
 - This repository and documentation are provided for technical reference.

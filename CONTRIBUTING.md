@@ -13,7 +13,19 @@ Rode antes de abrir um pull request:
 ```powershell
 pwsh -NoLogo -NoProfile -File .\scripts\check.ps1
 pwsh -NoLogo -NoProfile -File .\scripts\test-profile.ps1
+pwsh -NoLogo -NoProfile -File .\scripts\test-unit.ps1
+pwsh -NoLogo -NoProfile -File .\scripts\test-e2e-reinstall.ps1
+pwsh -NoLogo -NoProfile -File .\scripts\legal-check.ps1
 ```
+
+## Fluxo De Branch E Aprovação De PR
+
+- Não fazer push direto em `main`.
+- Toda mudança deve entrar por PR.
+- Merge só com CI verde.
+- Merge depende de aprovação do mantenedor (CODEOWNERS + proteção de branch).
+
+Guia completo: `docs/GITFLOW_PR_APPROVAL.md`.
 
 ## Adicionar Ícones
 

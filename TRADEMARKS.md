@@ -13,3 +13,9 @@ This project may reference third-party product names, services, and trademarks (
 ## Ownership
 
 All third-party trademarks remain the property of their respective owners.
+
+## Explicit Non-Affiliation
+
+This project is an independent community repository and is not affiliated with,
+endorsed by, sponsored by, or officially connected to the owners of third-party
+marks cited here, including oh-my-posh, Nerd Fonts, Microsoft, or GitHub.

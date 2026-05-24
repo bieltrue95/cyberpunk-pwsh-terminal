@@ -1,0 +1,79 @@
+# GitFlow E Aprovação De PR
+
+Este projeto segue um fluxo inspirado em GitFlow, simplificado para um time
+pequeno e com qualidade protegida por CI no GitHub Actions.
+
+## Objetivo
+
+- Permitir evolução contínua sem quebrar instalação/uso diário.
+- Garantir rastreabilidade de mudanças.
+- Exigir aprovação explícita do mantenedor antes de merge.
+
+## Modelo De Branches
+
+- `main`: produção estável, sempre pronta para uso.
+- `develop` (opcional): integração contínua de features antes de release.
+- `feature/<nome-curto>`: novas funcionalidades.
+- `fix/<nome-curto>`: correções não críticas.
+- `hotfix/<nome-curto>`: correções urgentes para produção.
+- `release/<versao>`: preparação de release (changelog, docs, ajustes finais).
+
+Se o projeto operar sem `develop`, use fluxo curto:
+`feature/* -> PR -> main` (sempre com CI verde e aprovação).
+
+## Regras De Pull Request
+
+- Nunca fazer push direto em `main`.
+- Todo merge deve acontecer por PR.
+- PR deve ser pequeno e focado (um objetivo claro).
+- PR deve descrever risco, impacto e validação local.
+- PR só pode ser mergeado com CI verde.
+
+## Aprovação Obrigatória Do Mantenedor
+
+Este repositório usa `CODEOWNERS` apontando o mantenedor principal. Para tornar
+a aprovação realmente obrigatória, configure no GitHub:
+
+1. `Settings > Branches > Add rule` para `main`
+2. Habilitar `Require a pull request before merging`
+3. Habilitar `Require approvals` (mínimo 1)
+4. Habilitar `Require review from Code Owners`
+5. Habilitar `Require status checks to pass before merging`
+6. Selecionar o check `validate` (workflow CI)
+7. Opcional e recomendado: `Require branches to be up to date before merging`
+8. Opcional e recomendado: `Do not allow bypassing the above settings`
+
+Com isso, o merge depende da aprovação do mantenedor dono do código.
+
+## Política De Merge
+
+- Preferir `Squash and merge` para histórico limpo.
+- Título do commit de merge deve ser descritivo.
+- Referenciar issue relacionada quando existir.
+
+## Checklist Mínimo Antes De Abrir PR
+
+```powershell
+pwsh -NoLogo -NoProfile -File .\scripts\check.ps1
+pwsh -NoLogo -NoProfile -File .\scripts\test-profile.ps1
+pwsh -NoLogo -NoProfile -File .\scripts\test-unit.ps1
+pwsh -NoLogo -NoProfile -File .\scripts\test-e2e-reinstall.ps1
+pwsh -NoLogo -NoProfile -File .\scripts\legal-check.ps1
+```
+
+## CI/CD Atual (Diagnóstico)
+
+Hoje o pipeline está em `.github/workflows/ci.yml` com job `validate` em
+`windows-latest` e os passos:
+
+- diagnóstico (`scripts/check.ps1`)
+- smoke test (`scripts/test-profile.ps1`)
+- unitários (`scripts/test-unit.ps1`)
+- E2E de reinstalação (`scripts/test-e2e-reinstall.ps1`)
+- checagem legal (`scripts/legal-check.ps1`)
+
+Status: **CI está consistente com o processo de qualidade**.
+
+Observação: **CD de release/publicação automática não está configurado**. Se
+quiser CD, o próximo passo é criar workflow de release com tag/versionamento.
+
