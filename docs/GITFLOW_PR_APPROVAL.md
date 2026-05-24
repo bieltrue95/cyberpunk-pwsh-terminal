@@ -148,16 +148,11 @@ O workflow roda em push para:
 
 - `main`
 - `develop`
-- `feature/**`
-- `fix/**`
-- `bugfix/**`
-- `hotfix/**`
-- `release/**`
-- `chore/**`
-- `docs/**`
 
-O workflow também roda em PRs direcionados para `main` e `develop`, além de
-permitir execução manual via `workflow_dispatch`.
+O workflow também roda em PRs direcionados para `main` e `develop`, incluindo
+branches `feature/**`, `fix/**`, `bugfix/**`, `hotfix/**`, `release/**`,
+`chore/**` e `docs/**`. Execução manual também fica disponível via
+`workflow_dispatch`.
 
 Status: **CI está consistente com o processo de qualidade**.
 
