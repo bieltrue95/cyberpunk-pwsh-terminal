@@ -63,3 +63,20 @@ Do not commit secrets, history files, certificates, private keys, `.env` files,
 or personal paths. The `.gitignore` blocks common cases, but contributors should
 still review their diffs.
 
+## Legal Checklist (Required)
+
+- Submit only original content or third-party content with compatible license.
+- Register new visual/media assets in `ASSET_ATTRIBUTION.md`.
+- Do not submit proprietary third-party material without authorization.
+- Do not commit secrets, tokens, API keys, private keys, or confidential data.
+- Use third-party marks only descriptively (compatibility), without implying
+  affiliation/endorsement.
+
+Quick references:
+
+- `THIRD_PARTY_NOTICES.md`
+- `ASSET_ATTRIBUTION.md`
+- `TRADEMARKS.md`
+- `LEGAL_COMPLIANCE.md`
+- `SECURITY.md`
+

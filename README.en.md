@@ -65,6 +65,10 @@ Backup locations and restore commands are documented in
 | --- | --- |
 | ![Beginner quick start flow](screenshots/beginner-quick-start.svg) | ![Emergency restore flow](screenshots/emergency-restore.svg) |
 
+| Visual install mind map | |
+| --- | --- |
+| ![Visual install mind map](screenshots/install-mindmap-sketch.svg) | |
+
 The previews are committed as SVG files so the README renders nicely on GitHub
 without external image hosting. Real PNG screenshots can be added later in the
 same `screenshots/` folder.
@@ -351,6 +355,17 @@ More fixes live in [docs/en/TROUBLESHOOTING.md](docs/en/TROUBLESHOOTING.md).
 - [Contributing](CONTRIBUTING.md)
 - [Changelog](CHANGELOG.md)
 
+## Dependency And Asset Licensing
+
+- [Third-party inventory](THIRD_PARTY_NOTICES.md)
+- [Visual asset attribution](ASSET_ATTRIBUTION.md)
+- [Trademark policy](TRADEMARKS.md)
+- [Legal compliance policy](LEGAL_COMPLIANCE.md)
+- [Security and exposure reporting](SECURITY.md)
+
+This project is compatible with referenced third-party tools and products, with
+no implied affiliation or endorsement.
+
 ## Roadmap
 
 - Add real PNG screenshots from Windows Terminal.
@@ -366,6 +381,7 @@ More fixes live in [docs/en/TROUBLESHOOTING.md](docs/en/TROUBLESHOOTING.md).
 - The terminal can only infer icons from file/folder names and extensions, so
   the goal is broad practical coverage, not a perfect mapping of every Nerd Font
   glyph.
+- This repository does not provide legal advice; use is at your own risk.
 
 ## License
 

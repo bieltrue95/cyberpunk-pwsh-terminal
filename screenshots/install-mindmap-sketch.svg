@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="860" viewBox="0 0 1400 860" role="img" aria-labelledby="title desc">
+  <title id="title">Installation mind map sketch</title>
+  <desc id="desc">Excalidraw-style sketch mind map for Cyberpunk PowerShell Terminal installation flow.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0a0f1d"/>
+      <stop offset="1" stop-color="#071426"/>
+    </linearGradient>
+    <filter id="softGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="2.5" result="b"/>
+      <feMerge>
+        <feMergeNode in="b"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <style>
+      .title { font: 800 44px "Cascadia Code", "Fira Code", Consolas, monospace; fill: #eaf3ff; }
+      .subtitle { font: 500 20px "Cascadia Code", "Fira Code", Consolas, monospace; fill: #9bb7d8; }
+      .node-title { font: 700 22px "Cascadia Code", "Fira Code", Consolas, monospace; }
+      .node-text { font: 500 17px "Cascadia Code", "Fira Code", Consolas, monospace; fill: #dce9ff; }
+      .tag { font: 700 15px "Cascadia Code", "Fira Code", Consolas, monospace; fill: #0b1220; }
+      .stroke-hand { stroke-linecap: round; stroke-linejoin: round; stroke-width: 3; fill: #101a2b; }
+      .wire { fill: none; stroke-width: 4; stroke-linecap: round; stroke-dasharray: 3 9; opacity: 0.9; }
+    </style>
+  </defs>
+
+  <rect width="1400" height="860" fill="url(#bg)"/>
+  <path d="M42 788 C235 724 359 846 557 790 C770 732 950 801 1329 700" stroke="#2bd8ff" opacity="0.2" fill="none"/>
+  <path d="M42 812 C285 742 421 879 636 813 C863 744 1075 813 1358 728" stroke="#ff4de3" opacity="0.16" fill="none"/>
+
+  <text x="60" y="80" class="title">Install Mind Map</text>
+  <text x="62" y="114" class="subtitle">Cyberpunk PowerShell Terminal • visual draft (excalidraw style)</text>
+
+  <!-- center -->
+  <g filter="url(#softGlow)">
+    <rect x="500" y="330" width="410" height="180" rx="26" class="stroke-hand" stroke="#67ff9a"/>
+    <path d="M514 346 L894 346 M514 494 L894 494" stroke="#67ff9a" opacity="0.25"/>
+    <text x="548" y="392" class="node-title" fill="#67ff9a">CYBERPUNK TERMINAL</text>
+    <text x="548" y="432" class="node-text">setup seguro, visual forte e rollback fácil</text>
+    <text x="548" y="465" class="node-text">ponto de partida: scripts/check.ps1 + setup.ps1</text>
+  </g>
+
+  <!-- prereq -->
+  <g>
+    <rect x="70" y="160" width="340" height="210" rx="24" class="stroke-hand" stroke="#63f3ff"/>
+    <text x="104" y="210" class="node-title" fill="#63f3ff">Pré-requisitos</text>
+    <text x="104" y="246" class="node-text">• Windows 10/11 + PowerShell 7</text>
+    <text x="104" y="278" class="node-text">• Git + Windows Terminal</text>
+    <text x="104" y="310" class="node-text">• FiraCode Nerd Font Mono</text>
+    <text x="104" y="342" class="node-text">• oh-my-posh (recomendado)</text>
+    <rect x="282" y="175" width="112" height="30" rx="8" fill="#63f3ff"/>
+    <text x="302" y="196" class="tag">antes</text>
+  </g>
+
+  <!-- recommended flow -->
+  <g>
+    <rect x="70" y="500" width="360" height="260" rx="24" class="stroke-hand" stroke="#ffd166"/>
+    <text x="104" y="552" class="node-title" fill="#ffd166">Fluxo recomendado</text>
+    <text x="104" y="590" class="node-text">1. git clone + cd repo</text>
+    <text x="104" y="622" class="node-text">2. pwsh ... scripts/check.ps1</text>
+    <text x="104" y="654" class="node-text">3. pwsh ... setup.ps1</text>
+    <text x="104" y="686" class="node-text">4. wt -p dev</text>
+    <text x="104" y="718" class="node-text">5. validar ls / ll / hist</text>
+    <rect x="312" y="516" width="102" height="30" rx="8" fill="#ffd166"/>
+    <text x="326" y="537" class="tag">rápido</text>
+  </g>
+
+  <!-- manual -->
+  <g>
+    <rect x="970" y="140" width="350" height="250" rx="24" class="stroke-hand" stroke="#ff4dff"/>
+    <text x="1004" y="192" class="node-title" fill="#ff4dff">Caminho manual</text>
+    <text x="1004" y="230" class="node-text">• install.ps1</text>
+    <text x="1004" y="262" class="node-text">• -InstallOhMyPosh</text>
+    <text x="1004" y="294" class="node-text">• -ConfigureWindowsTerminal</text>
+    <text x="1004" y="326" class="node-text">• -TerminalSettingsPath ...</text>
+    <text x="1004" y="358" class="node-text">• merge com backup e validação JSON</text>
+    <rect x="1210" y="156" width="94" height="30" rx="8" fill="#ff4dff"/>
+    <text x="1226" y="177" class="tag">custom</text>
+  </g>
+
+  <!-- post-check -->
+  <g>
+    <rect x="972" y="470" width="340" height="210" rx="24" class="stroke-hand" stroke="#67ff9a"/>
+    <text x="1004" y="520" class="node-title" fill="#67ff9a">Validação final</text>
+    <text x="1004" y="558" class="node-text">• . $PROFILE</text>
+    <text x="1004" y="590" class="node-text">• scripts/test-profile.ps1</text>
+    <text x="1004" y="622" class="node-text">• conferir fonte e prompt</text>
+    <text x="1004" y="654" class="node-text">• checar render de ícones</text>
+    <rect x="1182" y="486" width="114" height="30" rx="8" fill="#67ff9a"/>
+    <text x="1202" y="507" class="tag">check</text>
+  </g>
+
+  <!-- trouble -->
+  <g>
+    <rect x="510" y="620" width="390" height="180" rx="24" class="stroke-hand" stroke="#ff8f8f"/>
+    <text x="542" y="670" class="node-title" fill="#ff8f8f">Se der ruim</text>
+    <text x="542" y="708" class="node-text">• pwsh -NoProfile (sessão segura)</text>
+    <text x="542" y="740" class="node-text">• scripts/check.ps1</text>
+    <text x="542" y="772" class="node-text">• docs/BACKUP_RESTORE.md + uninstall.ps1</text>
+  </g>
+
+  <!-- connectors -->
+  <path class="wire" stroke="#63f3ff" d="M410 264 C466 300 494 325 534 360"/>
+  <path class="wire" stroke="#ffd166" d="M430 620 C478 592 500 563 548 510"/>
+  <path class="wire" stroke="#ff4dff" d="M970 268 C925 300 902 324 860 360"/>
+  <path class="wire" stroke="#67ff9a" d="M972 576 C930 560 900 540 852 500"/>
+  <path class="wire" stroke="#ff8f8f" d="M705 620 C705 590 705 553 705 512"/>
+</svg>

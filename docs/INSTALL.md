@@ -15,6 +15,9 @@ pwsh -NoLogo -NoProfile -ExecutionPolicy Bypass -File .\setup.ps1
 ```
 
 Fluxo passo a passo: [Comece aqui](GETTING_STARTED.md).
+Mapa mental visual: [docs/INSTALL_MINDMAP.md](INSTALL_MINDMAP.md).
+
+![Mind map visual de instalação](../screenshots/install-mindmap-sketch.svg)
 
 ## Pré-Requisitos
 

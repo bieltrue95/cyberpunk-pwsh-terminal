@@ -18,3 +18,11 @@ jobs:
       - name: Profile smoke test
         shell: pwsh
         run: .\scripts\test-profile.ps1
+
+      - name: Unit tests (Pester)
+        shell: pwsh
+        run: .\scripts\test-unit.ps1
+
+      - name: Legal compliance checks
+        shell: pwsh
+        run: .\scripts\legal-check.ps1

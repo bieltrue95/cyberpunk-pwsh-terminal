@@ -64,6 +64,10 @@ Backups e comandos de restauração ficam documentados em
 | --- | --- |
 | ![Fluxo de começo rápido](screenshots/beginner-quick-start.svg) | ![Fluxo de restauração emergencial](screenshots/emergency-restore.svg) |
 
+| Mind map visual de instalação | |
+| --- | --- |
+| ![Mind map visual de instalação](screenshots/install-mindmap-sketch.svg) | |
+
 As imagens atuais são SVGs versionados no próprio repositório. Isso garante que
 o GitHub renderize a documentação sem depender de hospedagem externa. Capturas
 PNG reais do Windows Terminal podem ser adicionadas depois em `screenshots/`.
@@ -352,6 +356,17 @@ Mais correções estão em [docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md).
 - [Changelog](CHANGELOG.md)
 - [English README](README.en.md)
 
+## Licenças De Dependências E Assets
+
+- [Inventário de terceiros](THIRD_PARTY_NOTICES.md)
+- [Atribuição de assets visuais](ASSET_ATTRIBUTION.md)
+- [Política de marcas](TRADEMARKS.md)
+- [Política de compliance jurídico](LEGAL_COMPLIANCE.md)
+- [Canal de segurança e vazamentos](SECURITY.md)
+
+Este projeto é compatível com ferramentas e produtos de terceiros citados na
+documentação, sem afiliação ou endosso implícito.
+
 ## Roadmap
 
 - Adicionar screenshots PNG reais do Windows Terminal.
@@ -366,6 +381,7 @@ Mais correções estão em [docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md).
 - O renderer é autocontido para evitar problemas de cache de módulo.
 - O terminal só consegue inferir ícones pelo nome/extensão de arquivos e pastas;
   o objetivo é cobertura prática, não mapear perfeitamente todos os glyphs Nerd Font.
+- Este repositório não fornece aconselhamento jurídico; uso por conta e risco.
 
 ## Licença
 

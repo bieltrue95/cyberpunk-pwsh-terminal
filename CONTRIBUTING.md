@@ -62,3 +62,20 @@ em `terminal\` para permitir merge seguro.
 Não commite segredos, histórico, certificados, chaves privadas, arquivos `.env`
 ou caminhos pessoais. O `.gitignore` bloqueia casos comuns, mas revise sempre o
 diff antes de subir alterações.
+
+## Checklist Jurídico (Obrigatório)
+
+- Conteúdo autoral próprio ou com licença compatível documentada.
+- Assets visuais/mídia novos registrados em `ASSET_ATTRIBUTION.md`.
+- Sem material proprietário de terceiros sem autorização.
+- Sem segredos, tokens, API keys, chaves privadas ou dados confidenciais.
+- Referências a marcas somente de forma descritiva (compatibilidade), sem
+  sugerir afiliação/endosso.
+
+Referências rápidas:
+
+- `THIRD_PARTY_NOTICES.md`
+- `ASSET_ATTRIBUTION.md`
+- `TRADEMARKS.md`
+- `LEGAL_COMPLIANCE.md`
+- `SECURITY.md`
