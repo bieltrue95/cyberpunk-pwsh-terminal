@@ -18,6 +18,7 @@
       .subtitle { font: 500 20px "Cascadia Code", "Fira Code", Consolas, monospace; fill: #9bb7d8; }
       .node-title { font: 700 22px "Cascadia Code", "Fira Code", Consolas, monospace; }
       .node-text { font: 500 17px "Cascadia Code", "Fira Code", Consolas, monospace; fill: #dce9ff; }
+      .node-text-sm { font: 500 15px "Cascadia Code", "Fira Code", Consolas, monospace; fill: #dce9ff; }
       .tag { font: 700 15px "Cascadia Code", "Fira Code", Consolas, monospace; fill: #0b1220; }
       .stroke-hand { stroke-linecap: round; stroke-linejoin: round; stroke-width: 3; fill: #101a2b; }
       .wire { fill: none; stroke-width: 4; stroke-linecap: round; stroke-dasharray: 3 9; opacity: 0.9; }
@@ -33,11 +34,12 @@
 
   <!-- center -->
   <g filter="url(#softGlow)">
-    <rect x="500" y="330" width="410" height="180" rx="26" class="stroke-hand" stroke="#67ff9a"/>
-    <path d="M514 346 L894 346 M514 494 L894 494" stroke="#67ff9a" opacity="0.25"/>
-    <text x="548" y="392" class="node-title" fill="#67ff9a">CYBERPUNK TERMINAL</text>
-    <text x="548" y="432" class="node-text">setup seguro, visual forte e rollback fácil</text>
-    <text x="548" y="465" class="node-text">ponto de partida: scripts/check.ps1 + setup.ps1</text>
+    <rect x="490" y="330" width="450" height="190" rx="26" class="stroke-hand" stroke="#67ff9a"/>
+    <path d="M506 348 L924 348 M506 502 L924 502" stroke="#67ff9a" opacity="0.25"/>
+    <text x="540" y="392" class="node-title" fill="#67ff9a">CYBERPUNK TERMINAL</text>
+    <text x="540" y="432" class="node-text-sm">setup seguro, visual forte</text>
+    <text x="540" y="459" class="node-text-sm">rollback facil e validacao</text>
+    <text x="540" y="486" class="node-text-sm">inicio: scripts/check.ps1 + setup.ps1</text>
   </g>
 
   <!-- prereq -->
@@ -67,42 +69,43 @@
 
   <!-- manual -->
   <g>
-    <rect x="970" y="140" width="350" height="250" rx="24" class="stroke-hand" stroke="#ff4dff"/>
+    <rect x="960" y="140" width="390" height="250" rx="24" class="stroke-hand" stroke="#ff4dff"/>
     <text x="1004" y="192" class="node-title" fill="#ff4dff">Caminho manual</text>
     <text x="1004" y="230" class="node-text">• install.ps1</text>
     <text x="1004" y="262" class="node-text">• -InstallOhMyPosh</text>
     <text x="1004" y="294" class="node-text">• -ConfigureWindowsTerminal</text>
     <text x="1004" y="326" class="node-text">• -TerminalSettingsPath ...</text>
-    <text x="1004" y="358" class="node-text">• merge com backup e validação JSON</text>
-    <rect x="1210" y="156" width="94" height="30" rx="8" fill="#ff4dff"/>
-    <text x="1226" y="177" class="tag">custom</text>
+    <text x="1004" y="358" class="node-text-sm">• merge com backup + JSON valido</text>
+    <rect x="1220" y="156" width="94" height="30" rx="8" fill="#ff4dff"/>
+    <text x="1236" y="177" class="tag">custom</text>
   </g>
 
   <!-- post-check -->
   <g>
-    <rect x="972" y="470" width="340" height="210" rx="24" class="stroke-hand" stroke="#67ff9a"/>
+    <rect x="960" y="470" width="390" height="210" rx="24" class="stroke-hand" stroke="#67ff9a"/>
     <text x="1004" y="520" class="node-title" fill="#67ff9a">Validação final</text>
     <text x="1004" y="558" class="node-text">• . $PROFILE</text>
     <text x="1004" y="590" class="node-text">• scripts/test-profile.ps1</text>
     <text x="1004" y="622" class="node-text">• conferir fonte e prompt</text>
     <text x="1004" y="654" class="node-text">• checar render de ícones</text>
-    <rect x="1182" y="486" width="114" height="30" rx="8" fill="#67ff9a"/>
-    <text x="1202" y="507" class="tag">check</text>
+    <rect x="1218" y="486" width="114" height="30" rx="8" fill="#67ff9a"/>
+    <text x="1238" y="507" class="tag">check</text>
   </g>
 
   <!-- trouble -->
   <g>
-    <rect x="510" y="620" width="390" height="180" rx="24" class="stroke-hand" stroke="#ff8f8f"/>
+    <rect x="500" y="610" width="430" height="205" rx="24" class="stroke-hand" stroke="#ff8f8f"/>
     <text x="542" y="670" class="node-title" fill="#ff8f8f">Se der ruim</text>
     <text x="542" y="708" class="node-text">• pwsh -NoProfile (sessão segura)</text>
     <text x="542" y="740" class="node-text">• scripts/check.ps1</text>
-    <text x="542" y="772" class="node-text">• docs/BACKUP_RESTORE.md + uninstall.ps1</text>
+    <text x="542" y="772" class="node-text-sm">• docs/BACKUP_RESTORE.md</text>
+    <text x="542" y="798" class="node-text-sm">• uninstall.ps1</text>
   </g>
 
   <!-- connectors -->
   <path class="wire" stroke="#63f3ff" d="M410 264 C466 300 494 325 534 360"/>
   <path class="wire" stroke="#ffd166" d="M430 620 C478 592 500 563 548 510"/>
-  <path class="wire" stroke="#ff4dff" d="M970 268 C925 300 902 324 860 360"/>
-  <path class="wire" stroke="#67ff9a" d="M972 576 C930 560 900 540 852 500"/>
-  <path class="wire" stroke="#ff8f8f" d="M705 620 C705 590 705 553 705 512"/>
+  <path class="wire" stroke="#ff4dff" d="M960 268 C925 300 902 324 870 360"/>
+  <path class="wire" stroke="#67ff9a" d="M960 576 C925 560 900 540 870 500"/>
+  <path class="wire" stroke="#ff8f8f" d="M705 610 C705 585 705 552 705 522"/>
 </svg>
