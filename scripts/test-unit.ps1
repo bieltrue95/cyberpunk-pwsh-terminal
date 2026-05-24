@@ -6,7 +6,7 @@ $testsPath = Join-Path $repoRoot 'tests'
 $pesterV5 = Get-Module -ListAvailable -Name Pester | Where-Object { $_.Version -ge [version]'5.0.0' } | Select-Object -First 1
 if (-not $pesterV5) {
     if (Get-Command Install-PackageProvider -ErrorAction SilentlyContinue) {
-        Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force -Scope CurrentUser | Out-Null
+        Install-PackageProvider -Name NuGet -Force -ForceBootstrap -Scope CurrentUser | Out-Null
     }
     if (-not (Get-PSRepository -Name PSGallery -ErrorAction SilentlyContinue)) {
         Register-PSRepository -Default
