@@ -17,6 +17,32 @@ $repoRoot = Split-Path -Parent $PSScriptRoot
 Set-Location $repoRoot
 
 $failed = $false
+$hasRipgrep = [bool](Get-Command rg -ErrorAction SilentlyContinue)
+
+function Search-RepositoryText {
+    param([Parameter(Mandatory)][string]$Pattern)
+
+    if ($hasRipgrep) {
+        $rgArgs = @('--line-number', '--hidden', '--glob', '!.git/*', '--glob', '!*.svg', '--regexp', $Pattern, '.')
+        $result = & rg @rgArgs 2>$null
+        if ($LASTEXITCODE -eq 0 -and $result) {
+            return @($result)
+        }
+        return @()
+    }
+
+    $files = git ls-files | Where-Object {
+        $_ -notmatch '\.svg$' -and
+        $_ -notmatch '(^|/)\.git(/|$)'
+    }
+
+    if (-not $files) { return @() }
+
+    return @(
+        Select-String -Path $files -Pattern $Pattern -ErrorAction SilentlyContinue |
+            ForEach-Object { "$($_.Path):$($_.LineNumber):$($_.Line)" }
+    )
+}
 
 # Secret scanning with high-signal patterns only.
 $secretPatterns = @(
@@ -29,9 +55,8 @@ $secretPatterns = @(
 )
 
 foreach ($pattern in $secretPatterns) {
-    $args = @('--line-number', '--hidden', '--glob', '!.git/*', '--glob', '!*.svg', '--regexp', $pattern, '.')
-    $result = & rg @args 2>$null
-    if ($LASTEXITCODE -eq 0 -and $result) {
+    $result = Search-RepositoryText -Pattern $pattern
+    if ($result) {
         Write-Fail "Potential secret pattern matched: $pattern"
         $result | ForEach-Object { Write-Host $_ -ForegroundColor Yellow }
         $failed = $true
