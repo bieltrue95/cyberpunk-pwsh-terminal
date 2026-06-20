@@ -12,34 +12,84 @@ Interactive diagrams created with Excalidraw to visualize the project architectu
 
 Shows the three main phases: Installation → Runtime → Uninstallation
 
-- **Blue Zone (Installation)**: install.ps1 and setup
-- **Purple Zone (Runtime)**: Profile and execution
-- **Red Zone (Uninstallation)**: uninstall scripts
+```
+┌─────────────────────────────────────────────────────────────┐
+│         CYBERPUNK TERMINAL - COMPLETE SYSTEM FLOW           │
+│                                                             │
+│  ┌──────────┐        ┌──────────┐        ┌──────────┐     │
+│  │ 1.INSTALL│        │2.RUNTIME │        │3.UNINSTAL│     │
+│  │ install  │        │ Profile  │        │ uninstall│     │
+│  │ .ps1     │        │ load     │        │ .ps1     │     │
+│  └─────┬────┘        └────┬─────┘        └────┬─────┘     │
+│        │                  │                    │            │
+│        ↓                  ↓                    ↓            │
+│  ┌──────────┐        ┌──────────┐        ┌──────────┐     │
+│  │Copy Files│        │ Commands │        │ Restore  │     │
+│  │ Theme    │        │ Ready    │        │ Backup   │     │
+│  │ Rules    │        │ls,hist.. │        │ Clean    │     │
+│  └──────────┘        └──────────┘        └──────────┘     │
+│        │                  │                    │            │
+│        ↓                  ↓                    ↓            │
+│  ✓ Profile         ✓ Terminal          ✓ Removal       │
+│    Installed         Ready              Complete       │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
+```
 
-🔗 **[Open Interactive Diagram →](https://excalidraw.com/#json=QIoddZeBEYkrpv0Cr--P7,ihTTvWFUKlCQf3SErG2xhQ)**
-
-**How to use:**
-- Click to select elements
-- Drag to move
-- Use mouse wheel to zoom
-- Click "Edit in Excalidraw" to edit
+**Zones:**
+- 🔵 **Blue (Installation)**: install.ps1, copy files, backup
+- 🟣 **Purple (Runtime)**: Profile load, commands, update check
+- 🔴 **Red (Uninstallation)**: uninstall, cleanup, restore
 
 ---
 
 ### 2. **Detailed Update Check Flow**
 
-Shows the asynchronous execution flow of update checking
+Shows the **asynchronous** execution flow of update checking
 
-- **Phase 1**: Quick check (already notified today?)
-- **Phase 2**: ThreadJob in background
-- **Phase 3**: Non-blocking result
+```
+┌─────────────────────────────────────────────────────────┐
+│          UPDATE CHECK - ASYNCHRONOUS EXECUTION          │
+│                                                         │
+│  Check-CyberUpdate called                              │
+│         │                                              │
+│         ↓                                              │
+│  ┌─────────────────────────┐                          │
+│  │ Already notified today? │                          │
+│  │ (fast sync check)       │                          │
+│  └────────┬───────────┬────┘                          │
+│       YES │           │ NO                             │
+│           │           │                                │
+│    ┌──────↓──┐   ┌────↓──────────┐                    │
+│    │ Return  │   │ Start Job     │                    │
+│    │ (skip)  │   │ check-update  │                    │
+│    └─────────┘   └────┬──────────┘                    │
+│                        │                               │
+│                        ↓                               │
+│         ┌──────────────────────────┐                  │
+│         │ Profile Finishes         │                  │
+│         │ PROMPT READY             │                  │
+│         │ (User can type now)      │                  │
+│         └──────────────────────────┘                  │
+│                        │                               │
+│        Meanwhile:      │      ↓                        │
+│        Job running     │  Toast notification           │
+│        in background   │  (if update found)            │
+│                        │  No wait!                     │
+│                        ↓                               │
+│                   ┌─────────────┐                     │
+│                   │ Notification│                     │
+│                   │ Async fired │                     │
+│                   └─────────────┘                     │
+│                                                       │
+└─────────────────────────────────────────────────────┘
+```
 
-🔗 **[Open Interactive Diagram →](https://excalidraw.com/#json=QBEMyS-3zMRg-JmvwfaTV,cYmhmWc5cvpXy63H8jOmJw)**
-
-**Highlight:**
-- Profile returns control BEFORE job finishes
-- Notification appears asynchronously
-- No prompt blocking
+**Highlights:**
+- ✅ Profile returns control BEFORE job finishes
+- ✅ Check runs in background (ThreadJob)
+- ✅ Notification fires asynchronously when update found
+- ✅ No prompt blocking
 
 ---
 

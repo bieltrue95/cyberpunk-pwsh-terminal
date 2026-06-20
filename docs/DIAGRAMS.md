@@ -12,34 +12,84 @@ Diagramas interativos criados com Excalidraw para visualizar a arquitetura e flu
 
 Mostra as três fases principais: Instalação → Runtime → Desinstalação
 
-- **Zona Azul (Instalação)**: install.ps1 e setup
-- **Zona Roxo (Runtime)**: Profile e execução
-- **Zona Vermelha (Desinstalação)**: uninstall scripts
+```
+┌─────────────────────────────────────────────────────────────┐
+│         CYBERPUNK TERMINAL - COMPLETE SYSTEM FLOW           │
+│                                                             │
+│  ┌──────────┐        ┌──────────┐        ┌──────────┐     │
+│  │ 1.INSTALL│        │2.RUNTIME │        │3.UNINSTAL│     │
+│  │ install  │        │ Profile  │        │ uninstall│     │
+│  │ .ps1     │        │ load     │        │ .ps1     │     │
+│  └─────┬────┘        └────┬─────┘        └────┬─────┘     │
+│        │                  │                    │            │
+│        ↓                  ↓                    ↓            │
+│  ┌──────────┐        ┌──────────┐        ┌──────────┐     │
+│  │Copy Files│        │ Commands │        │ Restore  │     │
+│  │ Theme    │        │ Ready    │        │ Backup   │     │
+│  │ Rules    │        │ls,hist.. │        │ Clean    │     │
+│  └──────────┘        └──────────┘        └──────────┘     │
+│        │                  │                    │            │
+│        ↓                  ↓                    ↓            │
+│  ✓ Profile         ✓ Terminal          ✓ Removal       │
+│    Installed         Ready              Complete       │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
+```
 
-🔗 **[Abrir Diagrama Interativo →](https://excalidraw.com/#json=QIoddZeBEYkrpv0Cr--P7,ihTTvWFUKlCQf3SErG2xhQ)**
-
-**Como usar:**
-- Clique para selecionar elementos
-- Arraste para mover
-- Use mouse wheel para zoom
-- Clique em "Edit in Excalidraw" para editar
+**Zonas:**
+- 🔵 **Azul (Instalação)**: install.ps1, copy files, backup
+- 🟣 **Roxo (Runtime)**: Profile load, commands, update check
+- 🔴 **Vermelho (Desinstalação)**: uninstall, cleanup, restore
 
 ---
 
 ### 2. **Fluxo Detalhado de Verificação de Atualização** (Update Check Flow)
 
-Mostra o fluxo assíncrono da verificação de atualizações
+Mostra o fluxo **assíncrono** da verificação de atualizações
 
-- **Fase 1**: Verificação rápida (já notificou hoje?)
-- **Fase 2**: ThreadJob em background
-- **Fase 3**: Resultado não-bloqueante
+```
+┌─────────────────────────────────────────────────────────┐
+│          UPDATE CHECK - ASYNCHRONOUS EXECUTION          │
+│                                                         │
+│  Check-CyberUpdate called                              │
+│         │                                              │
+│         ↓                                              │
+│  ┌─────────────────────────┐                          │
+│  │ Already notified today? │                          │
+│  │ (fast sync check)       │                          │
+│  └────────┬───────────┬────┘                          │
+│       YES │           │ NO                             │
+│           │           │                                │
+│    ┌──────↓──┐   ┌────↓──────────┐                    │
+│    │ Return  │   │ Start Job     │                    │
+│    │ (skip)  │   │ check-update  │                    │
+│    └─────────┘   └────┬──────────┘                    │
+│                        │                               │
+│                        ↓                               │
+│         ┌──────────────────────────┐                  │
+│         │ Profile Finishes         │                  │
+│         │ PROMPT READY             │                  │
+│         │ (User can type now)      │                  │
+│         └──────────────────────────┘                  │
+│                        │                               │
+│        Meanwhile:      │      ↓                        │
+│        Job running     │  Toast notification           │
+│        in background   │  (if update found)            │
+│                        │  No wait!                     │
+│                        ↓                               │
+│                   ┌─────────────┐                     │
+│                   │ Notification│                     │
+│                   │ Async fired │                     │
+│                   └─────────────┘                     │
+│                                                       │
+└─────────────────────────────────────────────────────┘
+```
 
-🔗 **[Abrir Diagrama Interativo →](https://excalidraw.com/#json=QBEMyS-3zMRg-JmvwfaTV,cYmhmWc5cvpXy63H8jOmJw)**
-
-**Destaque:**
-- Profile volta o controle ANTES do job terminar
-- Notificação aparece de forma assíncrona
-- Sem bloqueio do prompt
+**Destaques:**
+- ✅ Profile volta controle ANTES do job terminar
+- ✅ Verificação no background (ThreadJob)
+- ✅ Notificação assíncrona quando atualização encontrada
+- ✅ Sem bloqueio do prompt
 
 ---
 
