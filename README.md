@@ -160,6 +160,23 @@ Recarregue a sessão atual ou abra uma nova aba do Windows Terminal:
 . $PROFILE
 ```
 
+## Atualizar para Versão Mais Recente
+
+Se você já tem o projeto instalado, atualize de forma segura:
+
+```powershell
+cd caminho\para\cyberpunk-pwsh-terminal
+.\update.ps1
+```
+
+O script `update.ps1` faz:
+- ✅ Verifica conexão com GitHub
+- ✅ Valida que não há mudanças locais
+- ✅ Atualiza o repositório
+- ✅ Roda diagnóstico de integridade
+- ✅ Reinstala profile com backup automático
+- ✅ Mostra próximos passos
+
 ## Modos Opcionais De Instalação
 
 Instalar oh-my-posh com `winget` se ele estiver ausente:
