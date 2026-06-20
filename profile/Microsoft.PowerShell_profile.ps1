@@ -320,9 +320,41 @@ function Show-CyberChildItem {
 }
 
 # Remove aliases padrao de ls/dir e registra comandos globais customizados.
-# l e ll sao atalhos: ll inclui itens ocultos por usar -Force.
+# Suporta -a (como em Linux) para mostrar arquivos ocultos.
+# ll eh um alias rapido que por padrao mostra ocultos com -Force.
 Remove-Item Alias:ls, Alias:dir -Force -ErrorAction SilentlyContinue
-function global:ls { Show-CyberChildItem @args }
+
+function global:ls {
+    [CmdletBinding()]
+    param(
+        [Parameter(Position = 0, ValueFromRemainingArguments = $true)]
+        [object[]]$Arguments
+    )
+
+    # Converter -a (Linux) para -Force (PowerShell) para compatibilidade
+    $convertedArgs = @()
+    $showHidden = $false
+    $i = 0
+
+    while ($i -lt $Arguments.Count) {
+        $arg = $Arguments[$i]
+        $argStr = $arg.ToString()
+
+        if ($argStr -eq '-a' -or $argStr -eq '--all') {
+            $showHidden = $true
+        } else {
+            $convertedArgs += $arg
+        }
+        $i++
+    }
+
+    if ($showHidden) {
+        Show-CyberChildItem -Force @convertedArgs
+    } else {
+        Show-CyberChildItem @convertedArgs
+    }
+}
+
 function global:dir { Show-CyberChildItem @args }
 function global:l { Show-CyberChildItem @args }
 function global:ll { Show-CyberChildItem -Force @args }
