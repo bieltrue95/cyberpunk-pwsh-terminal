@@ -383,3 +383,117 @@ if ($posh) {
     }
 }
 
+# Notificação de atualização: verifica 1x por dia se há updates disponíveis
+function global:Check-CyberUpdate {
+    [CmdletBinding()]
+    param([switch]$Force)
+
+    $profileRoot = if ($PSScriptRoot) { $PSScriptRoot } else { Split-Path -Parent ([string]$PROFILE) }
+    $repoRoot = Split-Path -Parent $profileRoot
+    $checkScript = Join-Path $repoRoot 'scripts\check-update.ps1'
+    $lastNotificationFile = Join-Path $env:TEMP 'cyberpunk-notification-date.txt'
+
+    if (-not (Test-Path -LiteralPath $checkScript)) {
+        return
+    }
+
+    # Verificar se já foi notificado hoje
+    $today = Get-Date -Format 'yyyy-MM-dd'
+    $lastNotification = if (Test-Path $lastNotificationFile) { Get-Content -LiteralPath $lastNotificationFile -Raw -ErrorAction SilentlyContinue } else { $null }
+
+    if (-not $Force -and $lastNotification -eq $today) {
+        return # Já foi notificado hoje
+    }
+
+    # Executar verificação silenciosa
+    $env:CYBERPUNK_REPO_ROOT = $repoRoot
+    $result = & pwsh -NoLogo -NoProfile -File $checkScript -Silent
+
+    if ($result.UpdateAvailable) {
+        # Salvar que foi notificado hoje
+        $today | Set-Content -LiteralPath $lastNotificationFile -Force
+
+        # Mostrar notificação toast (Windows 10+)
+        try {
+            [Windows.UI.Notifications.ToastNotificationManager, Windows.UI.Notifications, ContentType = WindowsRuntime] > $null
+            [Windows.UI.Notifications.ToastNotification, Windows.UI.Notifications, ContentType = WindowsRuntime] > $null
+
+            $APP_ID = 'PowerShell'
+            $template = @"
+<toast>
+    <visual>
+        <binding template="ToastText02">
+            <text id="1">🔔 Cyberpunk Terminal Update</text>
+            <text id="2">Nova atualização: v$($result.CurrentVersion) → v$($result.RemoteVersion)</text>
+        </binding>
+    </visual>
+    <actions>
+        <action activationType="protocol" arguments="ms-settings:appsfeatures-app" content="Ver Detalhes"/>
+    </actions>
+</toast>
+"@
+            $xml = New-Object Windows.Data.Xml.Dom.XmlDocument
+            $xml.LoadXml($template)
+            $toast = New-Object Windows.UI.Notifications.ToastNotification $xml
+            [Windows.UI.Notifications.ToastNotificationManager]::CreateToastNotifier($APP_ID).Show($toast)
+        } catch {
+            # Se toast falhar, mostrar mensagem no console
+            Write-Host ""
+            Write-Host "╔════════════════════════════════════════════════════╗" -ForegroundColor Magenta
+            Write-Host "║  🔔 ATUALIZAÇÃO DISPONÍVEL                        ║" -ForegroundColor Magenta
+            Write-Host "║                                                    ║" -ForegroundColor Magenta
+            Write-Host "║  Versão atual: v$($result.CurrentVersion)" -ForegroundColor Cyan
+            Write-Host "║  Versão nova:  v$($result.RemoteVersion)" -ForegroundColor Green
+            Write-Host "║                                                    ║" -ForegroundColor Magenta
+            Write-Host "║  Digite: update-check                             ║" -ForegroundColor Yellow
+            Write-Host "║  para ver detalhes e atualizar                     ║" -ForegroundColor Yellow
+            Write-Host "║                                                    ║" -ForegroundColor Magenta
+            Write-Host "╚════════════════════════════════════════════════════╝" -ForegroundColor Magenta
+            Write-Host ""
+        }
+    }
+}
+
+# Comando para ver detalhes da atualização
+function global:update-check {
+    [CmdletBinding()]
+    param([switch]$Force)
+
+    $profileRoot = if ($PSScriptRoot) { $PSScriptRoot } else { Split-Path -Parent ([string]$PROFILE) }
+    $repoRoot = Split-Path -Parent $profileRoot
+    $checkScript = Join-Path $repoRoot 'scripts\check-update.ps1'
+    $updateScript = Join-Path $repoRoot 'update.ps1'
+
+    if (-not (Test-Path -LiteralPath $checkScript)) {
+        Write-Host "❌ Check script não encontrado" -ForegroundColor Red
+        return
+    }
+
+    $env:CYBERPUNK_REPO_ROOT = $repoRoot
+    $result = & pwsh -NoLogo -NoProfile -File $checkScript
+
+    if ($result.UpdateAvailable) {
+        Write-Host ""
+        Write-Host "═══════════════════════════════════════════════════════" -ForegroundColor Magenta
+        Write-Host "📦 ATUALIZAÇÃO DISPONÍVEL" -ForegroundColor Green
+        Write-Host "═══════════════════════════════════════════════════════" -ForegroundColor Magenta
+        Write-Host ""
+        Write-Host "  Versão atual:  v$($result.CurrentVersion)"
+        Write-Host "  Versão nova:   v$($result.RemoteVersion)"
+        Write-Host ""
+        Write-Host "📋 Para ver o changelog completo:" -ForegroundColor Cyan
+        Write-Host "   $($result.ChangelogUrl)"
+        Write-Host ""
+        Write-Host "🚀 Para atualizar agora:" -ForegroundColor Yellow
+        Write-Host "   .\update.ps1"
+        Write-Host ""
+        Write-Host "═══════════════════════════════════════════════════════" -ForegroundColor Magenta
+        Write-Host ""
+    } else {
+        Write-Host "✅ Você está na versão mais recente: v$($result.CurrentVersion)" -ForegroundColor Green
+    }
+}
+
+# Verificar atualização ao iniciar (1x por dia)
+Check-CyberUpdate -ErrorAction SilentlyContinue
+
