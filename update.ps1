@@ -119,10 +119,26 @@ if ($version) {
 Write-Host ""
 Write-Success "Atualização concluída com sucesso!"
 Write-Host ""
+
+# Mostrar mudanças desta versão
+Write-Info "✨ Novidades nesta atualização:"
+Write-Host ""
+Write-Host "🆕 ADICIONADO:" -ForegroundColor Green
+Write-Host "   • Script de atualização segura (update.ps1)"
+Write-Host "   • Suporte ao flag -a no comando ls (arquivos ocultos via flag)"
+Write-Host "   • Documentação melhorada de instalação"
+Write-Host ""
+Write-Host "🔄 MELHORADO:" -ForegroundColor Cyan
+Write-Host "   • Guia de inicialização mais claro (GETTING_STARTED.md)"
+Write-Host "   • Melhor distinção entre pré-requisitos obrigatórios e opcionais"
+Write-Host "   • Seção de troubleshooting expandida com soluções comuns"
+Write-Host ""
+
 Write-Info "Próximos passos:"
 Write-Host "  1. Recarregue seu PowerShell: . `$PROFILE"
 Write-Host "  2. Teste o novo perfil: ls"
-Write-Host "  3. Verifique o histórico: hist -Last 5"
+Write-Host "  3. Teste com arquivos ocultos: ls -a"
+Write-Host "  4. Verifique o histórico: hist -Last 5"
 Write-Host ""
 Write-Info "Se algo não funcionar, verifique:"
 Write-Host "  • Documentação: .\docs\GETTING_STARTED.md"
