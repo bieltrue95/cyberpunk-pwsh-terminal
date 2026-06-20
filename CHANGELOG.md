@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+
+### Added
+
+- Safe update script (`update.ps1`) for users to update their installation.
+- Support for `-a` flag in `ls` command (Linux-style hidden files).
+- Improved installation documentation with Windows Terminal Preview emphasis.
+- Improvements plan documentation for future development.
+- Contribution policy clarifying open-source nature and AI-assisted contributions.
+
+### Changed
+
+- Enhanced `GETTING_STARTED.md` with clearer step-by-step instructions.
+- Better distinction between mandatory and recommended prerequisites.
+- Improved troubleshooting section with common error solutions.
+
 ## [0.1.0] - 2026-05-23
 
 ### Added
