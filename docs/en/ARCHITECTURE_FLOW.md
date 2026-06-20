@@ -8,7 +8,11 @@ Visual and technical documentation of the complete project flow using Excalidraw
 
 ## 📊 Visual Diagrams
 
+> 💡 **Tip:** For interactive editable diagrams, see [DIAGRAMS.md](DIAGRAMS.md)
+
 ### Complete Project Flow
+
+**[🔗 Open Interactive Diagram on Excalidraw](https://excalidraw.com/#json=QIoddZeBEYkrpv0Cr--P7,ihTTvWFUKlCQf3SErG2xhQ)**
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
@@ -56,6 +60,8 @@ Visual and technical documentation of the complete project flow using Excalidraw
 ---
 
 ### Detailed Update Check Flow
+
+**[🔗 Open Interactive Diagram on Excalidraw](https://excalidraw.com/#json=QBEMyS-3zMRg-JmvwfaTV,cYmhmWc5cvpXy63H8jOmJw)**
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐

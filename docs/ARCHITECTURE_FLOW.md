@@ -8,7 +8,11 @@ Documentação visual e técnica do fluxo completo do projeto usando diagramas E
 
 ## 📊 Diagramas Visuais
 
+> 💡 **Dica:** Para visualizar diagramas interativos editáveis, veja [DIAGRAMS.md](DIAGRAMS.md)
+
 ### Fluxo Completo do Projeto
+
+**[🔗 Abrir Diagrama Interativo no Excalidraw](https://excalidraw.com/#json=QIoddZeBEYkrpv0Cr--P7,ihTTvWFUKlCQf3SErG2xhQ)**
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
@@ -56,6 +60,8 @@ Documentação visual e técnica do fluxo completo do projeto usando diagramas E
 ---
 
 ### Fluxo Detalhado de Verificação de Atualização
+
+**[🔗 Abrir Diagrama Interativo no Excalidraw](https://excalidraw.com/#json=QBEMyS-3zMRg-JmvwfaTV,cYmhmWc5cvpXy63H8jOmJw)**
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
