@@ -6,6 +6,18 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
+- Automatic update notification system (`check-update.ps1`).
+  - Toast notifications (1x per day) when new versions are available.
+  - `update-check` command to view changelog and available updates.
+  - Fallback console notifications for systems without Toast support.
+- Comprehensive uninstall checklist script (`scripts/uninstall-checklist.ps1`).
+  - Visual checklist of all components being removed.
+  - Automatic backup before uninstall.
+  - Detailed verification of successful uninstall.
+- Post-uninstall verification script (`scripts/test-uninstall-verify.ps1`).
+- `VERSION` file for semantic versioning.
+- `Update Notifications` guide documentation.
+- `Uninstall Guide` with step-by-step instructions and troubleshooting.
 - Safe update script (`update.ps1`) for users to update their installation.
 - Support for `-a` flag in `ls` command (Linux-style hidden files).
 - Improved installation documentation with Windows Terminal Preview emphasis.
@@ -14,6 +26,15 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
+- **Performance optimization**: Update check no longer blocks profile loading.
+  - Check-CyberUpdate now runs asynchronously via ThreadJob/Start-Job (non-blocking).
+  - Added intelligent caching (6-hour window) to reduce GitHub API calls.
+  - Removed redundant connectivity probe; timeout reduced from 10s to 5s.
+  - Notifications appear seconds after prompt is ready, not before.
+  - Command `update-check` benefits from cache and can return instantly if recently checked.
+- Enhanced `uninstall.ps1` with `-WithChecklist` option for detailed uninstall verification.
+- Improved uninstall script with cleanup of temporary notification files.
+- Updated documentation (UPDATE_NOTIFICATIONS.md) to describe async behavior and caching.
 - Enhanced `GETTING_STARTED.md` with clearer step-by-step instructions.
 - Better distinction between mandatory and recommended prerequisites.
 - Improved troubleshooting section with common error solutions.
