@@ -397,7 +397,7 @@ function global:Check-CyberUpdate {
         return
     }
 
-    # Verificar se já foi notificado hoje
+    # Verificar se já foi notificado hoje (gate rápido e síncrono)
     $today = Get-Date -Format 'yyyy-MM-dd'
     $lastNotification = if (Test-Path $lastNotificationFile) { Get-Content -LiteralPath $lastNotificationFile -Raw -ErrorAction SilentlyContinue } else { $null }
 
@@ -405,21 +405,47 @@ function global:Check-CyberUpdate {
         return # Já foi notificado hoje
     }
 
-    # Executar verificação silenciosa
+    # Iniciar verificação em background (não-bloqueante)
+    # Preferir ThreadJob (não cria subprocess) quando disponível; fallback para Start-Job
+    $useThreadJob = Get-Module -ListAvailable ThreadJob -ErrorAction SilentlyContinue
+
     $env:CYBERPUNK_REPO_ROOT = $repoRoot
-    $result = & pwsh -NoLogo -NoProfile -File $checkScript -Silent
+    $jobName = "CyberUpdate_$(Get-Random)"
 
-    if ($result.UpdateAvailable) {
-        # Salvar que foi notificado hoje
-        $today | Set-Content -LiteralPath $lastNotificationFile -Force
+    $scriptBlock = {
+        param($checkScript)
+        & $checkScript -Silent
+    }
 
-        # Mostrar notificação toast (Windows 10+)
-        try {
-            [Windows.UI.Notifications.ToastNotificationManager, Windows.UI.Notifications, ContentType = WindowsRuntime] > $null
-            [Windows.UI.Notifications.ToastNotification, Windows.UI.Notifications, ContentType = WindowsRuntime] > $null
+    if ($useThreadJob) {
+        $job = Start-ThreadJob -ScriptBlock $scriptBlock -ArgumentList $checkScript -Name $jobName -ErrorAction SilentlyContinue
+    } else {
+        $job = Start-Job -ScriptBlock $scriptBlock -ArgumentList $checkScript -Name $jobName -ErrorAction SilentlyContinue
+    }
 
-            $APP_ID = 'PowerShell'
-            $template = @"
+    if (-not $job) {
+        return # Se não conseguir criar o job, falhar silenciosamente
+    }
+
+    # Registrar callback para quando o job terminar
+    Register-ObjectEvent -InputObject $job -EventName StateChanged -Action {
+        if ($_.Sender.State -eq 'Completed') {
+            try {
+                $result = Receive-Job -Job $_.Sender -ErrorAction SilentlyContinue
+
+                if ($result -and $result.UpdateAvailable) {
+                    # Salvar que foi notificado hoje
+                    $today = Get-Date -Format 'yyyy-MM-dd'
+                    $lastNotificationFile = Join-Path $env:TEMP 'cyberpunk-notification-date.txt'
+                    $today | Set-Content -LiteralPath $lastNotificationFile -Force -ErrorAction SilentlyContinue
+
+                    # Mostrar notificação toast (Windows 10+)
+                    try {
+                        [Windows.UI.Notifications.ToastNotificationManager, Windows.UI.Notifications, ContentType = WindowsRuntime] > $null
+                        [Windows.UI.Notifications.ToastNotification, Windows.UI.Notifications, ContentType = WindowsRuntime] > $null
+
+                        $APP_ID = 'PowerShell'
+                        $template = @"
 <toast>
     <visual>
         <binding template="ToastText02">
@@ -432,26 +458,37 @@ function global:Check-CyberUpdate {
     </actions>
 </toast>
 "@
-            $xml = New-Object Windows.Data.Xml.Dom.XmlDocument
-            $xml.LoadXml($template)
-            $toast = New-Object Windows.UI.Notifications.ToastNotification $xml
-            [Windows.UI.Notifications.ToastNotificationManager]::CreateToastNotifier($APP_ID).Show($toast)
-        } catch {
-            # Se toast falhar, mostrar mensagem no console
-            Write-Host ""
-            Write-Host "╔════════════════════════════════════════════════════╗" -ForegroundColor Magenta
-            Write-Host "║  🔔 ATUALIZAÇÃO DISPONÍVEL                        ║" -ForegroundColor Magenta
-            Write-Host "║                                                    ║" -ForegroundColor Magenta
-            Write-Host "║  Versão atual: v$($result.CurrentVersion)" -ForegroundColor Cyan
-            Write-Host "║  Versão nova:  v$($result.RemoteVersion)" -ForegroundColor Green
-            Write-Host "║                                                    ║" -ForegroundColor Magenta
-            Write-Host "║  Digite: update-check                             ║" -ForegroundColor Yellow
-            Write-Host "║  para ver detalhes e atualizar                     ║" -ForegroundColor Yellow
-            Write-Host "║                                                    ║" -ForegroundColor Magenta
-            Write-Host "╚════════════════════════════════════════════════════╝" -ForegroundColor Magenta
-            Write-Host ""
+                        $xml = New-Object Windows.Data.Xml.Dom.XmlDocument
+                        $xml.LoadXml($template)
+                        $toast = New-Object Windows.UI.Notifications.ToastNotification $xml
+                        [Windows.UI.Notifications.ToastNotificationManager]::CreateToastNotifier($APP_ID).Show($toast)
+                    } catch {
+                        # Se toast falhar, mostrar mensagem no console
+                        Write-Host ""
+                        Write-Host "╔════════════════════════════════════════════════════╗" -ForegroundColor Magenta
+                        Write-Host "║  🔔 ATUALIZAÇÃO DISPONÍVEL                        ║" -ForegroundColor Magenta
+                        Write-Host "║                                                    ║" -ForegroundColor Magenta
+                        Write-Host "║  Versão atual: v$($result.CurrentVersion)" -ForegroundColor Cyan
+                        Write-Host "║  Versão nova:  v$($result.RemoteVersion)" -ForegroundColor Green
+                        Write-Host "║                                                    ║" -ForegroundColor Magenta
+                        Write-Host "║  Digite: update-check                             ║" -ForegroundColor Yellow
+                        Write-Host "║  para ver detalhes e atualizar                     ║" -ForegroundColor Yellow
+                        Write-Host "║                                                    ║" -ForegroundColor Magenta
+                        Write-Host "╚════════════════════════════════════════════════════╝" -ForegroundColor Magenta
+                        Write-Host ""
+                    }
+                }
+            } catch {
+                # Falhar silenciosamente
+            } finally {
+                # Limpar job e evento
+                Remove-Job -Job $_.Sender -Force -ErrorAction SilentlyContinue
+                Unregister-Event -SourceIdentifier $_.Sender.PSJobTypeName -ErrorAction SilentlyContinue
+            }
         }
-    }
+    } -ErrorAction SilentlyContinue
+
+    # Função retorna imediatamente; notificação aparece assincronamente
 }
 
 # Comando para ver detalhes da atualização
@@ -470,7 +507,8 @@ function global:update-check {
     }
 
     $env:CYBERPUNK_REPO_ROOT = $repoRoot
-    $result = & pwsh -NoLogo -NoProfile -File $checkScript
+    $args = if ($Force) { '-Force' } else { @() }
+    $result = & pwsh -NoLogo -NoProfile -File $checkScript @args
 
     if ($result.UpdateAvailable) {
         Write-Host ""

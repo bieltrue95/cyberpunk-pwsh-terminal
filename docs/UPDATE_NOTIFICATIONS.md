@@ -12,9 +12,10 @@ O Cyberpunk Terminal automaticamente verifica se há novas versões disponíveis
 
 Quando você abre um novo terminal PowerShell:
 
-1. **Verificação silenciosa** — O script `check-update.ps1` verifica o GitHub discretamente
+1. **Verificação em background** — O script `check-update.ps1` verifica o GitHub em uma thread/job separado (não bloqueia o prompt)
 2. **Uma notificação por dia** — Você só recebe notificação uma vez por dia, mesmo que abra múltiplos terminais
-3. **Sem bloqueios** — A verificação é não-bloqueante; seu terminal abre normalmente enquanto a verificação acontece
+3. **Cache inteligente** — Resultados são cacheados por 6 horas (reduz chamadas desnecessárias à API do GitHub)
+4. **Prompt aparece imediatamente** — Seu terminal fica pronto para usar sem esperar a verificação de rede (notificação chega alguns segundos depois, se houver atualização)
 
 ### Opções de Notificação
 

@@ -35,6 +35,8 @@ $repoRoot = if ($env:CYBERPUNK_REPO_ROOT) { $env:CYBERPUNK_REPO_ROOT } else { Sp
 $versionFile = Join-Path $repoRoot 'VERSION'
 $updateCheckFile = Join-Path $env:TEMP 'cyberpunk-last-update-check.txt'
 $lastNotificationFile = Join-Path $env:TEMP 'cyberpunk-notification-date.txt'
+$useCache = $false
+$remoteVersion = $null
 
 if (-not (Test-Path -LiteralPath $versionFile)) {
     if (-not $Silent) {
@@ -52,33 +54,41 @@ if (-not $currentVersion) {
     return @{ UpdateAvailable = $false; Error = $true }
 }
 
-# Verificar conexão
-if (-not $Silent) {
-    Write-Info "Verificando conexão com GitHub..."
-}
-
-try {
-    $null = Invoke-WebRequest -Uri "https://api.github.com" -TimeoutSec 5 -ErrorAction Stop
-} catch {
-    if (-not $Silent) {
-        Write-Warning-Custom "Sem conexão com internet. Verificação de atualização abortada."
+# Verificar cache válido (6 horas)
+if (-not $Force) {
+    if (Test-Path -LiteralPath $updateCheckFile) {
+        try {
+            $cached = Get-Content -LiteralPath $updateCheckFile -Raw | ConvertFrom-Json
+            $cacheAge = (Get-Date) - [DateTime]$cached.timestamp
+            if ($cacheAge.TotalMinutes -lt 360) {
+                if (-not $Silent) {
+                    Write-Info "Usando versão em cache (${[Math]::Round($cacheAge.TotalMinutes, 1)} min)"
+                }
+                $remoteVersion = $cached.version
+                $useCache = $true
+            }
+        } catch {
+            # Se cache está corrupto, ignorar e refazer
+            $useCache = $false
+        }
     }
-    return @{ UpdateAvailable = $false; Error = $true; Reason = "NoInternet" }
 }
 
-# Obter versão remota do GitHub
-if (-not $Silent) {
-    Write-Info "Buscando versão disponível no GitHub..."
-}
-
-try {
-    $release = Invoke-RestMethod -Uri "https://api.github.com/repos/bieltrue95/cyberpunk-pwsh-terminal/releases/latest" -TimeoutSec 10 -ErrorAction Stop
-    $remoteVersion = $release.tag_name -replace '^v', ''
-} catch {
+# Se cache inválido, buscar do GitHub
+if (-not $useCache) {
     if (-not $Silent) {
-        Write-Warning-Custom "Falha ao verificar versão remota: $_"
+        Write-Info "Buscando versão disponível no GitHub..."
     }
-    return @{ UpdateAvailable = $false; Error = $true; Reason = "APIError" }
+
+    try {
+        $release = Invoke-RestMethod -Uri "https://api.github.com/repos/bieltrue95/cyberpunk-pwsh-terminal/releases/latest" -TimeoutSec 5 -ErrorAction Stop
+        $remoteVersion = $release.tag_name -replace '^v', ''
+    } catch {
+        if (-not $Silent) {
+            Write-Warning-Custom "Falha ao verificar versão remota: $_"
+        }
+        return @{ UpdateAvailable = $false; Error = $true; Reason = "APIError" }
+    }
 }
 
 if (-not $remoteVersion) {

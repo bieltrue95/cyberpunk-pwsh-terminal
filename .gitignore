@@ -6,7 +6,7 @@ PSReadLine/
 
 # Secrets and machine-specific files
 .env
-.env.*
+.env.*q
 *.key
 *.pem
 *.pfx
