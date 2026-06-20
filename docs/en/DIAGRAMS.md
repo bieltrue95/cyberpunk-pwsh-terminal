@@ -2,7 +2,7 @@
 
 Language: English | [Português](../DIAGRAMS.md)
 
-Interactive diagrams created with Excalidraw to visualize the project architecture and flows.
+Visual diagrams created in ASCII to visualize the project architecture and flows.
 
 ---
 
@@ -117,16 +117,15 @@ Shows the **asynchronous** execution flow of update checking
 
 ---
 
-## 💡 How to Contribute
+## 💡 Contributing
 
-Want to update the diagrams?
+Want to add or improve a diagram?
 
-1. Click on the diagram link
-2. Click "Edit in Excalidraw" (top corner)
-3. Make your changes
-4. Use "Save to browser" to save
-5. Copy the new URL
-6. Open PR with the updated URL in this file
+1. Edit the markdown file
+2. Use ASCII characters to draw
+3. Keep the color pattern
+4. Test the visualization
+5. Open a PR with the improvement
 
 ---
 
@@ -134,17 +133,17 @@ Want to update the diagrams?
 
 | Date | Diagram | Change |
 |------|---------|--------|
-| 2026-06-20 | Complete Flow | Created with 3 zones |
-| 2026-06-20 | Update Check Flow | Created with async flow |
+| 2026-06-20 | Complete Flow | ASCII diagram created |
+| 2026-06-20 | Update Check Flow | ASCII diagram created |
 
 ---
 
 ## 📌 Notes
 
-- Diagrams are hosted on Excalidraw.com
-- Shareable links with read/edit access
-- Compatible with modern browsers
-- No login required to view
+- Diagrams are rendered as plain text (ASCII art)
+- Compatible with any markdown viewer
+- Always available offline in the repository
+- Easy to edit and version with git
 
 ---
 
